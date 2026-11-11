@@ -41,7 +41,7 @@ export function Table({
     <div role="region" aria-label={name} tabIndex={0} className={`overflow-x-auto rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#769d35] ${className}`}>
       <table className="primus-table min-w-full text-sm">
         <thead><tr className="border-b border-[#d9dfd9] text-left">
-          {head.map((h, i) => <th key={i} className="whitespace-nowrap px-3 py-3">{h}</th>)}
+          {head.map((h, i) => <th key={i} scope="col" className="whitespace-nowrap px-3 py-3">{h}</th>)}
         </tr></thead>
         <tbody>{rows}</tbody>
       </table>
