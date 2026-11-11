@@ -12,8 +12,8 @@
 - [x] M0: Scope and repository connection
 - [x] M1: Initial GitHub source audit
 - [x] M2: PRIMUS product alignment and route mapping
-- [ ] M3: Design system and shared shells
-- [ ] M4: Participant experience
+- [x] M3: Design tokens, shared primitives, participant and organiser shells (CI verification pending)
+- [ ] M4: Participant experience (home overview started; remaining route-by-route pass pending)
 - [ ] M5: Market/trading experience
 - [ ] M6: Organiser experience
 - [ ] M7: Projector experience
@@ -34,6 +34,15 @@
 - Organiser phase controls, lottery, rounds, judge/calibration, bulletins/content, ledger/corrections, fairness, exports and health.
 - Server-authoritative actions and database functions, realtime event updates, role separation and audit-oriented controls.
 - The current product documentation still describes the legacy Market Simulation game (Product/Consulting/Finance, IPO, shorts/covers, legacy phases and rescue mechanics). These details are not automatically PRIMUS requirements.
+
+## M3 — Foundation implementation started
+- Added PRIMUS design tokens and reusable shell styles in `apps/web/app/globals.css`.
+- Refreshed shared `Panel`, `Badge`, `Table`, `Stat`, `Notice`, button and input primitives in `apps/web/components/ui/ui.tsx`.
+- Restyled participant and organiser headers/navigation while preserving their server loaders, role gates, realtime providers and existing route contracts.
+- Reworked the sign-in presentation and app metadata for PRIMUS.
+- Added a participant command-centre introduction and an organiser event-control introduction.
+- Kept the projector stage and its read-only architecture separate.
+- No backend, database, engine, authentication or server-action logic was changed.
 
 ## M2 — Completed alignment
 See [PRIMUS_PRODUCT_ALIGNMENT.md](docs/PRIMUS_PRODUCT_ALIGNMENT.md).
@@ -58,4 +67,4 @@ The document contains:
 The current GitHub-connected workflow can inspect and commit repository files, but does not provide a local Node/Postgres/Supabase/browser runtime. Do not claim tests or builds pass until they are run in a real development environment.
 
 ## Next
-M3: implement the design foundation and shared participant/organiser shells in place, keeping the display separate. Before changing domain-specific labels, fields or mechanics, obtain the backend team's canonical PRIMUS contracts.
+Continue the route-by-route participant, organiser and display visual pass. Then create/refresh the draft PR to trigger GitHub CI, fix any failures, and complete the responsive/accessibility review. Do not change legacy domain mechanics until the backend team confirms canonical PRIMUS contracts.
