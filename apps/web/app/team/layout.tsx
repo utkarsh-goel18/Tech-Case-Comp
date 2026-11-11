@@ -22,7 +22,7 @@ import { homePlan } from "@/lib/team/home";
 import { alertTasks, nextAction } from "@/lib/team/alerts";
 import { PhaseEnd } from "./phase-end";
 
-export const metadata: Metadata = { title: { template: "%s · Team", default: "Team" } };
+export const metadata: Metadata = { title: { template: "%s · PRIMUS Team", default: "PRIMUS Team" } };
 
 // Every team screen (laptop or phone): the team, where the night is (phase and countdown, trading, the open round),
 // its cash, the latest bulletin and the sections of its track. The event's realtime channel refreshes the page on
