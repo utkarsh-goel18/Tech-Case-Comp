@@ -43,6 +43,12 @@ body {
 
 /* Shared app surfaces */
 .primus-shell { min-height: 100vh; background: var(--background); }
+.primus-skip-link {
+  position: absolute; z-index: 100; top: -5rem; left: 1rem;
+  padding: .7rem 1rem; background: var(--signal); color: var(--signal-ink);
+  font-size: .85rem; font-weight: 800;
+}
+.primus-skip-link:focus { top: 1rem; }
 .primus-topline {
   height: 4px;
   background: var(--signal);
