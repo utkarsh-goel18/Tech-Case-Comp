@@ -54,7 +54,7 @@ export async function NewsTicker({ event, status }: { event: DisplayEvent; statu
   if (items.length === 0) return null;
   const strip = items.map((it) => (
     <span key={it.key} className="mr-16 inline-flex items-center gap-4 whitespace-nowrap">
-      <span className={`rounded-md px-3 py-0.5 text-[24px] font-black ${TONE[it.tone]}`}>{it.tag}</span>
+      <span className={`rounded-sm px-3 py-0.5 text-[24px] font-black ${TONE[it.tone]}`}>{it.tag}</span>
       <span>{it.text}</span>
     </span>
   ));
