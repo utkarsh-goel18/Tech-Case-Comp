@@ -147,6 +147,32 @@ body {
   *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
 }
 
+
+/* Route-level content defaults: bring legacy pages onto the same surface system without changing their behaviour. */
+.primus-main table:not(.primus-table) { border-collapse: collapse; width: 100%; }
+.primus-main table:not(.primus-table) thead { background: #f1f4ef; }
+.primus-main table:not(.primus-table) th {
+  color: #5e6b63; font-family: var(--font-mono); font-size: .62rem;
+  font-weight: 700; letter-spacing: .08em; text-align: left; text-transform: uppercase;
+}
+.primus-main table:not(.primus-table) th,
+.primus-main table:not(.primus-table) td { padding: .7rem .8rem; }
+.primus-main table:not(.primus-table) tbody tr { border-bottom: 1px solid #e8ece7; }
+.primus-main input:not([type="checkbox"]):not([type="radio"]):not([type="hidden"]),
+.primus-main textarea,
+.primus-main select {
+  border-radius: 4px; border-color: var(--line-strong); background-color: #fff; color: var(--foreground);
+}
+.primus-main input:focus-visible,
+.primus-main textarea:focus-visible,
+.primus-main select:focus-visible {
+  outline: 2px solid #769d35; outline-offset: 2px; border-color: #769d35;
+}
+.primus-main a { text-underline-offset: 3px; }
+.primus-main button:disabled { cursor: not-allowed; opacity: .55; }
+.primus-header button:focus-visible,
+.primus-nav a:focus-visible { outline-color: var(--signal); }
+
 /* The projector's news ticker loops without a gap. */
 @keyframes msim-ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 .msim-ticker-track { animation: msim-ticker var(--ticker-seconds, 60s) linear infinite; }
