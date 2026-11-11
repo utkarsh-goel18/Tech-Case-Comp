@@ -16,12 +16,12 @@ export default async function AdminHome() {
     .order("is_rehearsal")
     .order("starts_at");
   return (
-    <main className="mx-auto max-w-3xl px-4 py-8">
-      <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold">Control panel</h1>
+    <main id="main-content" className="primus-login min-h-dvh px-4 py-10"><div className="primus-topline -mx-4 -mt-10 mb-8" /><div className="mx-auto max-w-4xl">
+      <div className="flex items-end justify-between border-b border-[#34423a] pb-5">
+        <div><p className="primus-kicker text-[#aeb9b1]">PRIMUS / Operations</p><h1 className="mt-2 text-3xl font-black tracking-[-.05em] text-white">Select event<span className="text-[#c9f36a]">.</span></h1></div>
         <SignOutButton />
       </div>
-      <p className="mt-1 text-slate-600">
+      <p className="mt-2 text-sm text-[#aeb9b1]">
         {viewer.displayName} · {viewer.role === "FAIRNESS" ? "Fairness officer" : "Organiser"}
       </p>
       <Panel title="Events" className="mt-6">
@@ -31,13 +31,13 @@ export default async function AdminHome() {
           <ul className="divide-y divide-slate-100">
             {events.map((e) => (
               <li key={e.slug}>
-                <Link href={`/admin/${e.slug}`} className="flex items-center justify-between gap-3 py-3 hover:bg-slate-50">
+                <Link href={`/admin/${e.slug}`} className="flex items-center justify-between gap-3 py-3 hover:bg-[#f1f4ef]">
                   <span>
                     <span className="font-semibold">{e.name}</span>{" "}
                     {e.is_rehearsal ? <Badge tone="violet">Rehearsal ×{e.clock_speed}</Badge> : <Badge tone="blue">Live</Badge>}
-                    <span className="block text-sm text-slate-500">Starts {dateTime(e.starts_at)} IST</span>
+                    <span className="block text-sm text-[#64716a]">Starts {dateTime(e.starts_at)} IST</span>
                   </span>
-                  <span className="text-right text-sm">
+                  <span className="text-right text-sm text-[#24312b]">
                     {PHASE_LABELS[e.current_phase as PhaseCode]}
                     {e.paused ? (
                       <>
@@ -52,6 +52,6 @@ export default async function AdminHome() {
           </ul>
         )}
       </Panel>
-    </main>
+    </div></main>
   );
 }

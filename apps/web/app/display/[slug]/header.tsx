@@ -18,13 +18,14 @@ const BADGE: Record<EventStatus["trading"], string> = {
 
 export function DisplayHeader({ event, status }: { event: DisplayEvent; status: EventStatus }) {
   return (
-    <header className="flex h-[150px] shrink-0 items-center justify-between gap-10 border-b-4 border-white/20 px-12" data-testid="display-header">
+    <header className="flex h-[150px] shrink-0 items-center justify-between gap-10 border-b-4 border-[#c9f36a]/50 px-12" data-testid="display-header">
       <div className="min-w-0">
-        <p className="truncate text-[28px] font-medium text-slate-300">
+        <p className="mb-1 font-mono text-[16px] font-bold tracking-[.28em] text-[#c9f36a]">PRIMUS / LIVE ARENA</p>
+        <p className="truncate text-[28px] font-medium text-[#aeb9b1]">
           {event.name}
           {event.is_rehearsal ? <span className="ml-4 rounded bg-violet-500 px-3 py-0.5 text-[22px] font-bold text-white">Rehearsal ×{event.clock_speed}</span> : null}
         </p>
-        <p className="text-[60px] leading-tight font-black tracking-tight" data-testid="display-phase">
+        <p className="text-[60px] leading-tight font-black tracking-tight text-[#c9f36a]" data-testid="display-phase">
           {PHASE_LABELS[status.phase]}
         </p>
       </div>
@@ -32,21 +33,21 @@ export function DisplayHeader({ event, status }: { event: DisplayEvent; status: 
       <div className="text-center" data-testid="display-round">
         {status.open_round ? (
           <>
-            <p className="text-[32px] font-semibold text-slate-300">
+            <p className="text-[32px] font-semibold text-[#aeb9b1]">
               {status.paused ? `Round ${status.open_round.number} is paused with` : `Round ${status.open_round.number} closes in`}
             </p>
             {/* While paused the countdown stands still at the time the round had left when the pause began. */}
-            <p className={`text-[76px] leading-none font-black ${status.paused ? "text-amber-300" : ""}`}>
+            <p className={`text-[76px] leading-none font-black ${status.paused ? "text-amber-300" : "text-[#c9f36a]"}`}>
               <Countdown to={status.open_round.closes_at} passed={status.paused ? "0:00" : "clearing…"} />
             </p>
           </>
         ) : status.next_round ? (
           <>
-            <p className="text-[32px] font-semibold text-slate-300">Round {status.next_round.number} opens</p>
+            <p className="text-[32px] font-semibold text-[#aeb9b1]">Round {status.next_round.number} opens</p>
             {status.paused ? (
               <p className="text-[56px] leading-none font-black text-amber-300">after the pause</p>
             ) : (
-              <p className="font-mono text-[76px] leading-none font-black tabular-nums">at {clock(status.next_round.opens_at)}</p>
+              <p className="font-mono text-[76px] leading-none font-black tabular-nums text-[#c9f36a]">at {clock(status.next_round.opens_at)}</p>
             )}
           </>
         ) : (
@@ -55,7 +56,7 @@ export function DisplayHeader({ event, status }: { event: DisplayEvent; status: 
       </div>
 
       <div className="flex items-center gap-8">
-        <span className={`rounded-xl px-6 py-2 text-[44px] font-black tracking-wider ${BADGE[status.trading]}`} data-testid="display-trading">
+        <span className={`rounded-sm px-6 py-2 text-[44px] font-black tracking-wider ${BADGE[status.trading]}`} data-testid="display-trading">
           {status.trading}
         </span>
         <div className="text-right">

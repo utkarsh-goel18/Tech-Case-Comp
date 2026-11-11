@@ -14,7 +14,7 @@ import { TakeoverView } from "./takeovers";
 import { ScreenSwitch } from "./screen-switch";
 import { FallbackRefresh } from "./fallback-refresh";
 
-export const metadata: Metadata = { title: "Big screen" };
+export const metadata: Metadata = { title: "PRIMUS Live Arena" };
 
 // The projector (1920×1080): header, bulletin banner and the ticker board, or a full-screen takeover. Every broadcast
 // on the event's channel re-reads this page (within a second); while the channel is down it re-reads every 10 s.

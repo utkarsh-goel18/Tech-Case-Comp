@@ -42,6 +42,17 @@ export default async function TeamHome() {
       <RefreshAt at={times[0] ?? null} />
       <AutoRefresh everyMs={15_000} active={squadWork} />
 
+      <section className="flex flex-col justify-between gap-4 border-b border-[#cbd4cc] pb-5 sm:flex-row sm:items-end">
+        <div>
+          <p className="primus-kicker">PRIMUS / Participant workspace</p>
+          <h1 className="primus-page-title mt-2">Command centre<span className="text-[#8aaa4e]">.</span></h1>
+          <p className="mt-2 max-w-xl text-sm leading-relaxed text-[#64716a]">Your live brief for the competition: what needs attention now, what is coming next, and where your team stands.</p>
+        </div>
+        <div className="font-mono text-xs font-semibold uppercase tracking-wider text-[#64716a]">
+          <span className="text-[#8aaa4e]">●</span> Live event data
+        </div>
+      </section>
+
       <Panel title="Now">
         {plan.now.length === 0 ? (
           <p className="text-sm text-slate-700" data-testid="home-idle">
@@ -86,13 +97,13 @@ export default async function TeamHome() {
           {squad ? (
             <dl className="space-y-2 text-sm">
               <div>
-                <dt className="text-xs text-slate-500">Squad</dt>
+                <dt className="primus-kicker">Squad</dt>
                 <dd className="text-lg font-semibold" data-testid="home-squad">
                   Squad {String(squad.number).padStart(2, "0")}
                 </dd>
               </div>
               <div>
-                <dt className="text-xs text-slate-500">Company</dt>
+                <dt className="primus-kicker">Company</dt>
                 <dd data-testid="home-company">
                   {company?.ticker ? (
                     <>
@@ -189,7 +200,7 @@ export default async function TeamHome() {
 function TaskItem({ t }: { t: HomeTask }) {
   const badge = STATE_BADGES[t.state];
   return (
-    <li className="rounded-md border border-slate-200 p-3" data-testid={`task-${t.key}`} data-state={t.state}>
+    <li className="primus-task border border-[#d9dfd9] bg-white px-4 py-3" data-testid={`task-${t.key}`} data-state={t.state}>
       <div className="flex flex-wrap items-start justify-between gap-x-3 gap-y-1">
         <div className="min-w-0 flex-1">
           <div className="flex flex-wrap items-center gap-2">

@@ -54,13 +54,13 @@ export async function NewsTicker({ event, status }: { event: DisplayEvent; statu
   if (items.length === 0) return null;
   const strip = items.map((it) => (
     <span key={it.key} className="mr-16 inline-flex items-center gap-4 whitespace-nowrap">
-      <span className={`rounded-md px-3 py-0.5 text-[24px] font-black ${TONE[it.tone]}`}>{it.tag}</span>
+      <span className={`rounded-sm px-3 py-0.5 text-[24px] font-black ${TONE[it.tone]}`}>{it.tag}</span>
       <span>{it.text}</span>
     </span>
   ));
   const seconds = Math.max(30, Math.round(items.reduce((n, it) => n + it.tag.length + it.text.length, 0) / 6));
   return (
-    <div className="h-[72px] shrink-0 overflow-hidden border-t-4 border-white/20 bg-black/60" role="marquee" aria-label="News ticker" data-testid="news-ticker">
+    <div className="h-[72px] shrink-0 overflow-hidden border-t-4 border-[#c9f36a]/50 bg-black/60" role="region" aria-label="Live event ticker" aria-live="off" data-testid="news-ticker">
       <div className="msim-ticker-track flex h-full w-max items-center text-[32px] font-semibold" style={{ ["--ticker-seconds" as string]: `${seconds}s` }}>
         <div className="flex min-w-[1920px] items-center pl-12">{strip}</div>
         <div className="flex min-w-[1920px] items-center pl-12" aria-hidden>

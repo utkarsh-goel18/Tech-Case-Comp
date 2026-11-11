@@ -39,6 +39,7 @@ export default async function PhaseControl({ params }: PageProps<"/admin/[slug]"
   const blocked = status.gate ?? (status.paused ? "Resume the event before advancing." : null);
 
   return (
+    <>
     <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
       {/* At the planned end the gate and the controls change: re-read then, not only on the next broadcast. */}
       <RefreshAt at={status.phase_ends_at} />
@@ -190,5 +191,6 @@ export default async function PhaseControl({ params }: PageProps<"/admin/[slug]"
         </Panel>
       </div>
     </div>
+    </>
   );
 }
