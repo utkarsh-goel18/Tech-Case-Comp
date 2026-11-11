@@ -53,13 +53,13 @@ export default async function TeamLayout({ children }: LayoutProps<"/team">) {
         <SquadChannel squadId={ctx.squad?.id ?? null}>
         <FeedbackProvider>
         <Heartbeat eventId={event.id} area="team" />
-        <div className="min-h-screen bg-slate-50">
-          <header className="border-b border-slate-200 bg-white">
-            <div className="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-x-4 gap-y-1 px-4 pt-3">
+        <div className="primus-shell">\n          <div className="primus-topline" />
+          <header className="primus-header">
+            <div className="primus-header-inner flex flex-wrap items-center justify-between gap-x-4 gap-y-2 px-4 py-3">
               <div className="flex min-w-0 flex-wrap items-center gap-2">
-                <h1 className="font-mono text-lg font-bold">{team.code}</h1>
+                <Link href="/team" className="primus-brand"><span className="primus-brand-mark">P.</span><span>PRIMUS <span className="font-normal tracking-[.12em] text-[#9eaaa1]">/ TEAM PORTAL</span></span></Link>\n                <span className="font-mono text-xs font-bold tracking-wider text-[#c9f36a]">{team.code}</span>
                 <Badge tone="slate">{TRACK_LABELS[team.track]}</Badge>
-                <span className="hidden truncate text-sm text-slate-600 sm:inline">{team.name}</span>
+                <span className="hidden truncate text-sm text-[#c1cbc3] sm:inline">{team.name}</span>
                 {event.is_rehearsal ? <Badge tone="violet">Rehearsal ×{event.clock_speed}</Badge> : null}
               </div>
               <div className="flex items-center gap-3 text-sm">
@@ -69,9 +69,9 @@ export default async function TeamLayout({ children }: LayoutProps<"/team">) {
                 <SignOutButton />
               </div>
             </div>
-            <dl className="mx-auto grid max-w-5xl grid-cols-2 gap-x-4 gap-y-1 px-4 py-2 text-sm sm:grid-cols-4">
+            <dl className="mx-auto grid max-w-[1440px] grid-cols-2 gap-x-4 gap-y-2 border-t border-[#34423a] px-4 py-3 text-sm text-[#f4f6f1] sm:grid-cols-4">
               <div>
-                <dt className="text-xs text-slate-500">Phase</dt>
+                <dt className="primus-kicker text-[#91a097]">Phase</dt>
                 <dd className="font-semibold" data-testid="team-phase">
                   {PHASE_LABELS[status.phase]}
                   <PhaseEnd endsAt={status.phase_ends_at} phase={status.phase} gate={status.gate} next={status.next_phase} />
@@ -82,7 +82,7 @@ export default async function TeamLayout({ children }: LayoutProps<"/team">) {
                 <dd>
                   <Badge tone={status.trading === "OPEN" ? "green" : status.trading === "PAUSED" ? "amber" : "slate"}>{status.trading}</Badge>
                   {status.open_round ? (
-                    <span className="ml-1 text-slate-600">
+                    <span className="ml-1 text-[#aeb9b1]">
                       round {status.open_round.number} · <Countdown to={status.open_round.closes_at} passed="clearing" />
                     </span>
                   ) : status.next_round ? (
@@ -94,14 +94,14 @@ export default async function TeamLayout({ children }: LayoutProps<"/team">) {
               </div>
               <div>
                 <dt className="text-xs text-slate-500">Cash</dt>
-                <dd className="font-mono font-semibold tabular-nums" data-testid="team-cash">
+                <dd className="font-mono font-semibold tabular-nums text-[#c9f36a]" data-testid="team-cash">
                   {money(team.cash)}
                 </dd>
               </div>
               {finance ? (
                 <div>
                   <dt className="text-xs text-slate-500">Collateral locked</dt>
-                  <dd className="font-mono tabular-nums">{money(team.collateral)}</dd>
+                  <dd className="font-mono tabular-nums text-[#f4f6f1]">{money(team.collateral)}</dd>
                 </div>
               ) : null}
             </dl>
@@ -130,8 +130,8 @@ export default async function TeamLayout({ children }: LayoutProps<"/team">) {
               <span className="font-semibold text-slate-900 underline-offset-2 hover:underline">{latest.title}</span>
             </Link>
           ) : null}
-          <FeedbackBar className="mx-auto max-w-5xl px-4 pt-3" />
-          <main className="mx-auto max-w-5xl px-4 py-4">{children}</main>
+          <FeedbackBar className="mx-auto max-w-[1440px] px-4 pt-3" />
+          <main className="primus-main">{children}</main>
         </div>
       </FeedbackProvider>
         </SquadChannel>
