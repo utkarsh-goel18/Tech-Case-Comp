@@ -53,7 +53,8 @@ export default async function TeamLayout({ children }: LayoutProps<"/team">) {
         <SquadChannel squadId={ctx.squad?.id ?? null}>
         <FeedbackProvider>
         <Heartbeat eventId={event.id} area="team" />
-        <div className="primus-shell">\n          <a className="primus-skip-link" href="#main-content">Skip to content</a>
+        <div className="primus-shell">
+          <a className="primus-skip-link" href="#main-content">Skip to content</a>
           <div className="primus-topline" />
           <header className="primus-header">
             <div className="primus-header-inner flex flex-wrap items-center justify-between gap-x-4 gap-y-2 px-4 py-3">
