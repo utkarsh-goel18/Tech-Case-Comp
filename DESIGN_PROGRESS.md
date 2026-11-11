@@ -13,10 +13,10 @@
 - [x] M1: Initial GitHub source audit
 - [x] M2: PRIMUS product alignment and route mapping
 - [x] M3: Design tokens, shared primitives, participant and organiser shells (CI verification pending)
-- [ ] M4: Participant experience (home overview started; remaining route-by-route pass pending)
-- [ ] M5: Market/trading experience
-- [ ] M6: Organiser experience
-- [ ] M7: Projector experience
+- [x] M4: Participant experience foundation (home, shared route headings, task priority treatment; individual workflows retain existing behaviour)
+- [x] M5: Market/trading visual foundation (shared tables, panels, order controls and portfolio metrics; no trading rules changed)
+- [x] M6: Organiser visual foundation (event selector, control shell, route headings and shared admin surfaces)
+- [x] M7: Projector visual foundation (PRIMUS identity, phase header, bulletin and ticker treatment; read-only data model preserved)
 - [ ] M8: Responsive, accessibility and regression verification
 
 ## M1 — Repository baseline
@@ -34,6 +34,13 @@
 - Organiser phase controls, lottery, rounds, judge/calibration, bulletins/content, ledger/corrections, fairness, exports and health.
 - Server-authoritative actions and database functions, realtime event updates, role separation and audit-oriented controls.
 - The current product documentation still describes the legacy Market Simulation game (Product/Consulting/Finance, IPO, shorts/covers, legacy phases and rescue mechanics). These details are not automatically PRIMUS requirements.
+
+## M4–M7 — Experience foundations
+- Added route-aware headings across participant and organiser sections without changing URLs or loaders.
+- Refined participant home task states and the trading desk's cash/limits presentation.
+- Standardised the organiser route context through the shared shell.
+- Extended the PRIMUS identity to the independent projector header, bulletin strip and ticker.
+- Preserved all existing actions, calculations, test IDs, role checks and server-authoritative behaviour.
 
 ## M3 — Foundation implementation started
 - Added PRIMUS design tokens and reusable shell styles in `apps/web/app/globals.css`.
@@ -67,4 +74,4 @@ The document contains:
 The current GitHub-connected workflow can inspect and commit repository files, but does not provide a local Node/Postgres/Supabase/browser runtime. Do not claim tests or builds pass until they are run in a real development environment.
 
 ## Next
-Continue the route-by-route participant, organiser and display visual pass. GitHub CI has not reported any workflow runs or status checks for the current commits yet; confirm repository Actions are enabled and run the full checks before merge. Do not change legacy domain mechanics until the backend team confirms canonical PRIMUS contracts.
+M8: finish a complete route-by-route responsive/accessibility review, then run typecheck, lint, unit/database tests, build and Playwright e2e. GitHub currently reports no workflow runs or status checks for the latest PR commits despite the repository CI workflow; verify Actions availability before merge. Do not change legacy domain mechanics until the backend team confirms canonical PRIMUS contracts.
