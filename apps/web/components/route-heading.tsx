@@ -24,6 +24,7 @@ const TEAM: Record<string, Copy> = {
   "/team/earnings": { eyebrow: "Results / Performance", title: "Company performance", description: "Review the performance information currently available to your team." },
 };
 const ADMIN: Record<string, Copy> = {
+  "/": { eyebrow: "Operations / Overview", title: "Event overview", description: "A live overview of this event, its current phase and the organiser tools available to your role." },
   "/phase": { eyebrow: "Operations / Schedule", title: "Phase control", description: "Control the event state and schedule using server-authoritative actions." },
   "/lottery": { eyebrow: "Operations / Allocation", title: "Team allocation", description: "Manage the event's allocation and draw workflow." },
   "/rounds": { eyebrow: "Operations / Market", title: "Round control", description: "Monitor and manage the configured market rounds." },
@@ -39,7 +40,7 @@ const ADMIN: Record<string, Copy> = {
 function resolve(path: string): Copy | null {
   if (path === "/team") return null;
   if (path.startsWith("/admin/")) {
-    const rest = path.replace(/^\/admin\/[^/]+/, "") || "/phase";
+    const rest = path.replace(/^\/admin\/[^/]+/, "") || "/";
     const key = Object.keys(ADMIN).sort((a,b)=>b.length-a.length).find((x)=>rest === x || rest.startsWith(x + "/"));
     return key ? ADMIN[key]! : null;
   }
