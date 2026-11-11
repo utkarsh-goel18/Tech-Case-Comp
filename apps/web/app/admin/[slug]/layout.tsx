@@ -28,7 +28,7 @@ export default async function EventAdminLayout({ children, params }: LayoutProps
       <EventChannel eventId={event.id} staff>
         <FeedbackProvider>
         <Heartbeat eventId={event.id} area="admin" tick={organiser} />
-        <div className="primus-shell">
+        <div className="primus-shell">\n          <a className="primus-skip-link" href="#main-content">Skip to content</a>
           <div className="primus-topline" />
           <header className="primus-header">
             <div className="primus-header-inner flex flex-wrap items-center justify-between gap-3 px-4 py-3">
@@ -55,7 +55,7 @@ export default async function EventAdminLayout({ children, params }: LayoutProps
             <AdminNav slug={slug} fairness={viewer!.role === "FAIRNESS"} />
           </header>
           <FeedbackBar className="mx-auto max-w-[1440px] px-4 pt-4" />
-          <main className="primus-main">{children}</main>
+          <main id="main-content" className="primus-main">{children}</main>
         </div>
       </FeedbackProvider>
       </EventChannel>
