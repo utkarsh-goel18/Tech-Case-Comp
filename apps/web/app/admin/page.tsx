@@ -16,7 +16,7 @@ export default async function AdminHome() {
     .order("is_rehearsal")
     .order("starts_at");
   return (
-    <main className="primus-login min-h-dvh px-4 py-10"><div className="primus-topline -mx-4 -mt-10 mb-8" /><div className="mx-auto max-w-4xl">
+    <main id="main-content" className="primus-login min-h-dvh px-4 py-10"><a className="primus-skip-link" href="#main-content">Skip to content</a><div className="primus-topline -mx-4 -mt-10 mb-8" /><div className="mx-auto max-w-4xl">
       <div className="flex items-end justify-between border-b border-[#34423a] pb-5">
         <div><p className="primus-kicker text-[#aeb9b1]">PRIMUS / Operations</p><h1 className="mt-2 text-3xl font-black tracking-[-.05em] text-white">Select event<span className="text-[#c9f36a]">.</span></h1></div>
         <SignOutButton />
