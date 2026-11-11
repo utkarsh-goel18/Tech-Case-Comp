@@ -20,6 +20,7 @@ export function DisplayHeader({ event, status }: { event: DisplayEvent; status: 
   return (
     <header className="flex h-[150px] shrink-0 items-center justify-between gap-10 border-b-4 border-[#c9f36a]/50 px-12" data-testid="display-header">
       <div className="min-w-0">
+        <p className="mb-1 font-mono text-[16px] font-bold tracking-[.28em] text-[#c9f36a]">PRIMUS / LIVE ARENA</p>
         <p className="truncate text-[28px] font-medium text-[#aeb9b1]">
           {event.name}
           {event.is_rehearsal ? <span className="ml-4 rounded bg-violet-500 px-3 py-0.5 text-[22px] font-bold text-white">Rehearsal ×{event.clock_speed}</span> : null}
