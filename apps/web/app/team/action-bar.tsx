@@ -19,9 +19,9 @@ export function ActionBar({ task }: { task: BarTask | null }) {
   if (!task) return null;
   const here = path === task.href;
   return (
-    <div className="sticky top-0 z-30 border-b border-violet-800 bg-violet-700 text-white shadow" role="region" aria-label="Do this now" data-testid="action-bar">
+    <div className="sticky top-0 z-30 border-b border-[#34423a] bg-[#18231d] text-white shadow" role="region" aria-label="Do this now" data-testid="action-bar">
       <div className="mx-auto flex max-w-5xl flex-wrap items-center gap-x-3 gap-y-1 px-4 py-2 text-sm">
-        <span className="rounded bg-white/20 px-2 py-0.5 text-xs font-bold uppercase tracking-wide">Do this now</span>
+        <span className="rounded-sm bg-[#c9f36a] px-2 py-0.5 text-xs font-bold uppercase tracking-wide text-[#1b2910]">Do this now</span>
         {/* The title keeps at least 10rem: on a phone the countdown and the button wrap to a second line instead
             of squeezing it. */}
         <span className="min-w-[10rem] flex-1 font-semibold [overflow-wrap:anywhere]" data-testid="action-bar-title">
@@ -29,14 +29,14 @@ export function ActionBar({ task }: { task: BarTask | null }) {
         </span>
         <span className="ml-auto flex items-center gap-3">
           {task.due ? (
-            <span className="whitespace-nowrap text-violet-100">
+            <span className="whitespace-nowrap text-[#aeb9b1]">
               closes in <Countdown to={task.due} passed="now" className="font-semibold text-white" />
             </span>
           ) : null}
           {here ? (
-            <span className="whitespace-nowrap rounded bg-white/15 px-3 py-1 text-xs font-semibold">You&apos;re on it</span>
+            <span className="whitespace-nowrap rounded-sm border border-[#526157] px-3 py-1 text-xs font-semibold text-[#d5ddd7]">You&apos;re on it</span>
           ) : (
-            <Link href={task.href} className="whitespace-nowrap rounded bg-white px-3 py-1 text-xs font-bold text-violet-800 hover:bg-violet-50">
+            <Link href={task.href} className="whitespace-nowrap rounded-sm bg-[#c9f36a] px-3 py-1 text-xs font-bold text-[#1b2910] hover:bg-[#d8fb91]">
               {task.linkLabel ?? "Open"} →
             </Link>
           )}
