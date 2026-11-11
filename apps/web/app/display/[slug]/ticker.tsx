@@ -60,7 +60,7 @@ export async function NewsTicker({ event, status }: { event: DisplayEvent; statu
   ));
   const seconds = Math.max(30, Math.round(items.reduce((n, it) => n + it.tag.length + it.text.length, 0) / 6));
   return (
-    <div className="h-[72px] shrink-0 overflow-hidden border-t-4 border-[#c9f36a]/50 bg-black/60" role="marquee" aria-label="News ticker" aria-live="off" data-testid="news-ticker">
+    <div className="h-[72px] shrink-0 overflow-hidden border-t-4 border-[#c9f36a]/50 bg-black/60" role="region" aria-label="Live event ticker" aria-live="off" data-testid="news-ticker">
       <div className="msim-ticker-track flex h-full w-max items-center text-[32px] font-semibold" style={{ ["--ticker-seconds" as string]: `${seconds}s` }}>
         <div className="flex min-w-[1920px] items-center pl-12">{strip}</div>
         <div className="flex min-w-[1920px] items-center pl-12" aria-hidden>
