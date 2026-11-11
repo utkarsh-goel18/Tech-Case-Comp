@@ -13,10 +13,10 @@
 - [x] M1: Initial GitHub source audit
 - [x] M2: PRIMUS product alignment and route mapping
 - [x] M3: Design tokens, shared primitives, participant and organiser shells (CI verification pending)
-- [x] M4: Participant experience foundation (home, shared route headings, task priority treatment; individual workflows retain existing behaviour)
-- [x] M5: Market/trading visual foundation (shared tables, panels, order controls and portfolio metrics; no trading rules changed)
-- [x] M6: Organiser visual foundation (event selector, control shell, route headings and shared admin surfaces)
-- [x] M7: Projector visual foundation (PRIMUS identity, phase header, bulletin and ticker treatment; read-only data model preserved)
+- [ ] M4: Participant experience — shared route headings, home/task styling and workflow foundation implemented; route-by-route polish and verification remain
+- [ ] M5: Market/trading — shared surfaces and trading metrics refreshed; route-by-route polish and verification remain
+- [ ] M6: Organiser — event selector, control shell and route headings refreshed; route-by-route polish and verification remain
+- [ ] M7: Projector — identity, phase header, bulletin and ticker refreshed; visual regression verification remains
 - [ ] M8: Responsive, accessibility and regression verification
 
 ## M1 — Repository baseline
@@ -35,7 +35,7 @@
 - Server-authoritative actions and database functions, realtime event updates, role separation and audit-oriented controls.
 - The current product documentation still describes the legacy Market Simulation game (Product/Consulting/Finance, IPO, shorts/covers, legacy phases and rescue mechanics). These details are not automatically PRIMUS requirements.
 
-## M4–M7 — Experience foundations
+## M4–M7 — Experience foundations (implementation in progress)
 - Added route-aware headings across participant and organiser sections without changing URLs or loaders.
 - Refined participant home task states and the trading desk's cash/limits presentation.
 - Standardised the organiser route context through the shared shell.
