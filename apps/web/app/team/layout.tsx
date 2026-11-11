@@ -13,6 +13,7 @@ import { SignOutButton } from "@/components/sign-out-button";
 import { Badge } from "@/components/ui/ui";
 import { Countdown, ServerClock } from "@/components/ui/countdown";
 import { RealtimeDot } from "@/components/ui/realtime-dot";
+import { RouteHeading } from "@/components/route-heading";
 import { TeamNav } from "./nav";
 import { ActionBar } from "./action-bar";
 import { Alerts, SoundToggle } from "./alerts";
@@ -134,7 +135,7 @@ export default async function TeamLayout({ children }: LayoutProps<"/team">) {
             </Link>
           ) : null}
           <FeedbackBar className="mx-auto max-w-[1440px] px-4 pt-3" />
-          <main id="main-content" className="primus-main">{children}</main>
+          <main id="main-content" className="primus-main"><RouteHeading />{children}</main>
         </div>
       </FeedbackProvider>
         </SquadChannel>
