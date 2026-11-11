@@ -43,7 +43,7 @@ export function Table({
         <thead><tr className="border-b border-[#d9dfd9] text-left">
           {head.map((h, i) => <th key={i} className="whitespace-nowrap px-3 py-3">{h}</th>)}
         </tr></thead>
-        <tbody className="divide-y divide-[#e8ece7]">{rows}</tbody>
+        <tbody>{rows}</tbody>
       </table>
       {isEmpty ? <p className="px-3 py-5 text-sm text-[#64716a]">{empty ?? "Nothing yet."}</p> : null}
     </div>
