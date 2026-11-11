@@ -3,70 +3,59 @@
 ## Project rules
 - Work only in `redesign/primus-frontend`; never push to `main`.
 - Fork `utkarsh-goel18/Tech-Case-Comp` is the source of truth.
-- PRIMUS Team Guide is authoritative for PRIMUS mechanics; the older market-simulation demo is visual reference only.
-- Do not change `packages/engine`, `supabase/**`, auth, RLS, RPC contracts, or server actions without an explicit scope decision.
-- Do not present old-game mechanics as PRIMUS functionality.
-- Keep `/display` as its own surface.
+- The user confirmed this is the correct codebase; backend work is ongoing.
+- Treat current backend contracts as protected. Do not change engine, migrations, RLS, auth, RPCs or server actions as part of visual work.
+- Do not present legacy game mechanics as confirmed PRIMUS rules.
+- Keep `/display` as a separate read-only surface.
 
 ## Status
 - [x] M0: Scope and repository connection
-- [x] M1: Initial GitHub source audit (read-only; remote files inspected)
-- [ ] M1b: Resolve product/backend compatibility before frontend implementation
-- [ ] M2: Design system and shared shells
-- [ ] M3: Participant overview and editors
-- [ ] M4: Market/trading experience
-- [ ] M5: Organiser experience
-- [ ] M6: Projector experience
-- [ ] M7: Responsive, accessibility and regression verification
+- [x] M1: Initial GitHub source audit
+- [x] M2: PRIMUS product alignment and route mapping
+- [ ] M3: Design system and shared shells
+- [ ] M4: Participant experience
+- [ ] M5: Market/trading experience
+- [ ] M6: Organiser experience
+- [ ] M7: Projector experience
+- [ ] M8: Responsive, accessibility and regression verification
 
-## M1 — Verified repository findings
-
-### Repository state
+## M1 — Repository baseline
 - Default branch: `claude/market-simulation-platform-9rk357`.
-- Working branch created: `redesign/primus-frontend`, based on the default branch.
-- Repository is a pnpm monorepo; root package is `market-sim`.
+- Working branch: `redesign/primus-frontend`.
+- pnpm monorepo; root package `market-sim`.
 - Frontend: `apps/web`; Next.js 16.4.3, React 19.3.0, TypeScript, Tailwind 4.
-- Root scripts: `pnpm test` runs workspace tests then DB tests; `pnpm typecheck` runs workspace typechecks and scripts typecheck. Web scripts include `test`, `typecheck`, `build`, `lint`, `e2e`.
-- Tests/builds have NOT been executed in this remote GitHub-only audit.
+- Supabase Postgres/Auth/Realtime/RLS; pure TypeScript engine in `packages/engine`.
+- Participant routes under `apps/web/app/team`; organiser/fairness routes under `apps/web/app/admin`; independent projector under `apps/web/app/display`.
+- Existing Playwright coverage includes participant, organiser and display journeys.
+- No typecheck, build, unit tests or e2e tests have been executed by this remote GitHub-only workflow.
 
-### Critical product mismatch — verified
-The current source is still the older Market Simulation game, not a PRIMUS-aligned implementation:
-- `README.md` describes Product/Consulting/Finance tracks, squads, IPO, short/cover orders, advisor fees and flash bulletin.
-- `PLAN.md` defines legacy phase codes including `SQUAD_DRAW`, `IPO`, `ROUNDS_1_4`, `RESCUE_1/2`, `ROUNDS_13_21`, and legacy order types `SHORT/COVER`.
-- Participant routes include `/team/squad/**`, `/team/trade/ipo/**`, `/team/calls/**`, `/team/rescue/**`, and `/team/earnings`.
-- Trading UI in `apps/web/app/team/trade/page.tsx` describes IPO, shorting and covering; `ticket.tsx` imports `ORDER_TYPES` and `OrderType` from the existing engine.
-- Team layout currently shows track, squad channel and legacy market state.
-- Admin UI and engine phase model also use legacy concepts.
-- This is not a cosmetic mismatch. The PRIMUS workflow discussed in the brief (PRD build, crisis response/rescue, Q&A, virtual-cash trading with PRIMUS restrictions) cannot be assumed to be supported by the current backend.
-- No legacy mechanics have been removed or changed.
+## M1 — Important existing capabilities
+- Participant home, squad workspace, submissions, rescue/calls, Q&A, chat, bulletins, market, trading, positions, history, ledger, judging and earnings.
+- Organiser phase controls, lottery, rounds, judge/calibration, bulletins/content, ledger/corrections, fairness, exports and health.
+- Server-authoritative actions and database functions, realtime event updates, role separation and audit-oriented controls.
+- The current product documentation still describes the legacy Market Simulation game (Product/Consulting/Finance, IPO, shorts/covers, legacy phases and rescue mechanics). These details are not automatically PRIMUS requirements.
 
-### Frontend route inventory (verified from App Router tree)
-- Public/auth: `/`, `/login`.
-- Team: `/team`; `/team/squad` and nested `pitch`, `plan`, `problem`, `flash`; `/team/rescue`; `/team/qa`; `/team/calls`; `/team/chat`; `/team/market`, `/team/market/[ticker]`, `/team/market/book`; `/team/trade`, `/team/trade/ipo`, `/team/trade/positions`, `/team/trade/history`; `/team/ledger`; `/team/judging`; `/team/earnings`; `/team/bulletins`.
-- Admin: `/admin`; `/admin/[slug]`; nested `bulletins`, `chats`, `content`, `exports`, `fairness`, `health`, `judge` (including `calibration`), `ledger` (including `corrections`), `lottery` (including `record`), `rounds`.
-- Display: `/display`; `/display/[slug]`.
-- API routes include `/api/judge/work`, `/api/lottery-record`, `/api/rankings`; admin also has export and lottery-record route handlers.
+## M2 — Completed alignment
+See [PRIMUS_PRODUCT_ALIGNMENT.md](docs/PRIMUS_PRODUCT_ALIGNMENT.md).
 
-### Shared UI and styling (verified)
-- Root stylesheet: `apps/web/app/globals.css`; currently light defaults (`#fff` / slate foreground), Tailwind 4 import and system sans/mono stacks.
-- Root layout: `apps/web/app/layout.tsx`.
-- Team shell: `apps/web/app/team/layout.tsx`; horizontal section nav in `nav.tsx`; `action-bar.tsx`, `alerts.tsx`, `phase-end.tsx`.
-- Admin shell: `apps/web/app/admin/[slug]/layout.tsx`; horizontal nav in `nav.tsx`.
-- Display shell is separate under `apps/web/app/display/**`.
-- UI primitives: `apps/web/components/ui/ui.tsx`, `action.tsx`, `countdown.tsx`, `line-chart.tsx`, `realtime-dot.tsx`, `result-message.tsx`.
-- Team home is task/deadline oriented in `apps/web/app/team/page.tsx`; current layout uses `Panel` and `Stat` primitives.
-- Trading ticket is an existing functional client component in `apps/web/app/team/trade/ticket.tsx`; preserve its action/nonce/validation flow if the product scope retains it.
+The document contains:
+- Participant journey and current route mapping.
+- Organiser journey and current route mapping.
+- Separate projector strategy.
+- Visual thesis and shared-shell principles.
+- Existing route/behaviour preservation rules.
+- Backend dependency register for phases, tracks, submissions, rescue, trading, judging, results, access, roles, realtime and display.
+- Frontend implementation sequence and definition of done.
 
-### Test coverage inventory (verified from tree; not executed)
-- Playwright specs exist under `apps/web/e2e/`: admin bulletins, calibration, content, exports, fairness, health, judge, ledger, lottery, phase, rounds; display awards, board, frame, takeovers; lottery record; smoke; team calls, chat, feedback, home, IPO, judging, layout, market, plan, QA, rescue, squad, trade.
-- Unit tests include team judging markdown, UI action helpers, and judge-work route tests.
-- Test selectors are embedded in route/components (examples: `team-phase`, `team-cash`, `home-idle`, `home-squad`, `home-company`, `trading-notice`, `collateral-blocked`, `display-paused`). Full selector inventory and test execution remain pending.
+## Decisions
+1. The user confirmed this repository is the intended codebase. We will adapt the existing application into the PRIMUS experience; we will not search for another repository.
+2. Backend development is ongoing. Frontend work will use existing server-provided data and agreed contracts; it will not invent or simulate missing backend functionality.
+3. Preserve existing server-side authority, database contracts, RLS, audit trails, role gates, route contracts and functional tests.
+4. The visual redesign can proceed independently on the working branch. Any required game-rule/backend changes must be raised as explicit integration dependencies.
+5. No PR has been opened and nothing has been merged into the default branch.
 
-## Decisions / blockers
-1. Do not start a PRIMUS visual rewrite against this branch until the product/backend mismatch is resolved.
-2. We need to establish whether this repository is intentionally the old engine to be adapted, or whether a newer PRIMUS backend branch exists.
-3. If this is the intended repo, a frontend-only redesign cannot implement PRIMUS mechanics that the current engine/database do not support. That would require a separately scoped backend/game-engine migration and cannot be hidden inside a styling task.
-4. Remote GitHub API access allows source inspection and file/branch commits, but does not provide a local Node environment, browser, Supabase instance or Playwright runtime. Typecheck/build/e2e results must be run in a real development environment before declaring them passing.
+## Environment limitation
+The current GitHub-connected workflow can inspect and commit repository files, but does not provide a local Node/Postgres/Supabase/browser runtime. Do not claim tests or builds pass until they are run in a real development environment.
 
-## Next step
-Confirm the intended product boundary: adapt this legacy game into PRIMUS (which requires backend/game-rule work), or locate the newer PRIMUS-aligned repository/branch. Until then, preserve the current application and do not delete legacy flows.
+## Next
+M3: implement the design foundation and shared participant/organiser shells in place, keeping the display separate. Before changing domain-specific labels, fields or mechanics, obtain the backend team's canonical PRIMUS contracts.
