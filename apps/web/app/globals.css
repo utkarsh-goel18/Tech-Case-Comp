@@ -115,6 +115,7 @@ body {
 .primus-button-primary:hover { background: #d8fb91; }
 .primus-button-primary:active { transform: translateY(1px); }
 .primus-login {
+  color: #f4f6f1;
   background: radial-gradient(ellipse at 75% 0%, #26372d 0%, transparent 42%), var(--ink);
 }
 .primus-login-grid {
