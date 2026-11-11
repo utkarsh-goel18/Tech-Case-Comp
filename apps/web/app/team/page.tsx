@@ -42,6 +42,17 @@ export default async function TeamHome() {
       <RefreshAt at={times[0] ?? null} />
       <AutoRefresh everyMs={15_000} active={squadWork} />
 
+      <section className="flex flex-col justify-between gap-4 border-b border-[#cbd4cc] pb-5 sm:flex-row sm:items-end">
+        <div>
+          <p className="primus-kicker">PRIMUS / Participant workspace</p>
+          <h1 className="primus-page-title mt-2">Command centre<span className="text-[#8aaa4e]">.</span></h1>
+          <p className="mt-2 max-w-xl text-sm leading-relaxed text-[#64716a]">Your live brief for the competition: what needs attention now, what is coming next, and where your team stands.</p>
+        </div>
+        <div className="font-mono text-xs font-semibold uppercase tracking-wider text-[#64716a]">
+          <span className="text-[#8aaa4e]">●</span> Live event data
+        </div>
+      </section>
+
       <Panel title="Now">
         {plan.now.length === 0 ? (
           <p className="text-sm text-slate-700" data-testid="home-idle">
