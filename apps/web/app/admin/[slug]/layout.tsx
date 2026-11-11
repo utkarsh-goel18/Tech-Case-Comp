@@ -28,7 +28,8 @@ export default async function EventAdminLayout({ children, params }: LayoutProps
       <EventChannel eventId={event.id} staff>
         <FeedbackProvider>
         <Heartbeat eventId={event.id} area="admin" tick={organiser} />
-        <div className="primus-shell">\n          <div className="primus-topline" />
+        <div className="primus-shell">
+          <div className="primus-topline" />
           <header className="primus-header">
             <div className="primus-header-inner flex flex-wrap items-center justify-between gap-3 px-4 py-3">
               <div className="flex flex-wrap items-center gap-2">
