@@ -1,6 +1,6 @@
 # PRIMUS Product Alignment & Frontend Architecture
 
-Status: **M2 audit in progress — no application code changed in this commit.**
+Status: **M2 complete — frontend implementation is underway on the same working branch.**
 Working branch: `redesign/primus-frontend`
 
 ## 1. Purpose and guardrails
