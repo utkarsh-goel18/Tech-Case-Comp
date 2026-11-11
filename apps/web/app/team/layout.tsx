@@ -53,11 +53,13 @@ export default async function TeamLayout({ children }: LayoutProps<"/team">) {
         <SquadChannel squadId={ctx.squad?.id ?? null}>
         <FeedbackProvider>
         <Heartbeat eventId={event.id} area="team" />
-        <div className="primus-shell">\n          <div className="primus-topline" />
+        <div className="primus-shell">
+          <div className="primus-topline" />
           <header className="primus-header">
             <div className="primus-header-inner flex flex-wrap items-center justify-between gap-x-4 gap-y-2 px-4 py-3">
               <div className="flex min-w-0 flex-wrap items-center gap-2">
-                <Link href="/team" className="primus-brand"><span className="primus-brand-mark">P.</span><span>PRIMUS <span className="font-normal tracking-[.12em] text-[#9eaaa1]">/ TEAM PORTAL</span></span></Link>\n                <span className="font-mono text-xs font-bold tracking-wider text-[#c9f36a]">{team.code}</span>
+                <Link href="/team" className="primus-brand"><span className="primus-brand-mark">P.</span><span>PRIMUS <span className="font-normal tracking-[.12em] text-[#9eaaa1]">/ TEAM PORTAL</span></span></Link>
+                <span className="font-mono text-xs font-bold tracking-wider text-[#c9f36a]">{team.code}</span>
                 <Badge tone="slate">{TRACK_LABELS[team.track]}</Badge>
                 <span className="hidden truncate text-sm text-[#c1cbc3] sm:inline">{team.name}</span>
                 {event.is_rehearsal ? <Badge tone="violet">Rehearsal ×{event.clock_speed}</Badge> : null}
@@ -78,7 +80,7 @@ export default async function TeamLayout({ children }: LayoutProps<"/team">) {
                 </dd>
               </div>
               <div>
-                <dt className="text-xs text-slate-500">Trading</dt>
+                <dt className="primus-kicker text-[#91a097]">Trading</dt>
                 <dd>
                   <Badge tone={status.trading === "OPEN" ? "green" : status.trading === "PAUSED" ? "amber" : "slate"}>{status.trading}</Badge>
                   {status.open_round ? (
@@ -93,14 +95,14 @@ export default async function TeamLayout({ children }: LayoutProps<"/team">) {
                 </dd>
               </div>
               <div>
-                <dt className="text-xs text-slate-500">Cash</dt>
+                <dt className="primus-kicker text-[#91a097]">Cash</dt>
                 <dd className="font-mono font-semibold tabular-nums text-[#c9f36a]" data-testid="team-cash">
                   {money(team.cash)}
                 </dd>
               </div>
               {finance ? (
                 <div>
-                  <dt className="text-xs text-slate-500">Collateral locked</dt>
+                  <dt className="primus-kicker text-[#91a097]">Collateral locked</dt>
                   <dd className="font-mono tabular-nums text-[#f4f6f1]">{money(team.collateral)}</dd>
                 </div>
               ) : null}
