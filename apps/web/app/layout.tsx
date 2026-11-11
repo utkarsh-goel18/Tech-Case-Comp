@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description: "The live competition workspace for PRIMUS ’26",
 };
 
-export const viewport: Viewport = { width: "device-width", initialScale: 1 };
+export const viewport: Viewport = { width: "device-width", initialScale: 1, themeColor: "#101815" };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
