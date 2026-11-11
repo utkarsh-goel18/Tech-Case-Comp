@@ -90,7 +90,7 @@ export default async function TeamLayout({ children }: LayoutProps<"/team">) {
                       round {status.open_round.number} · <Countdown to={status.open_round.closes_at} passed="clearing" />
                     </span>
                   ) : status.next_round ? (
-                    <span className="ml-1 text-slate-600">
+                    <span className="ml-1 text-[#aeb9b1]">
                       round {status.next_round.number} at {clock(status.next_round.opens_at)}
                     </span>
                   ) : null}
