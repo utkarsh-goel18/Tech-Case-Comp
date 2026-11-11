@@ -14,7 +14,7 @@ import { RealtimeDot } from "@/components/ui/realtime-dot";
 import { RouteHeading } from "@/components/route-heading";
 import { AdminNav } from "./nav";
 
-export const metadata: Metadata = { title: { template: "%s · Control panel", default: "Control panel" } };
+export const metadata: Metadata = { title: { template: "%s · PRIMUS Control Room", default: "PRIMUS Control Room" } };
 
 // Every admin page of one event: header with the phase, trading state and server clock; the section tabs; the
 // event's realtime channel (pages refresh on every broadcast) and the heartbeat (an organiser's console also runs
