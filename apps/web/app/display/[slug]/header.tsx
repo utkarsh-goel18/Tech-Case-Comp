@@ -32,7 +32,7 @@ export function DisplayHeader({ event, status }: { event: DisplayEvent; status: 
       <div className="text-center" data-testid="display-round">
         {status.open_round ? (
           <>
-            <p className="text-[32px] font-semibold text-slate-300">
+            <p className="text-[32px] font-semibold text-[#aeb9b1]">
               {status.paused ? `Round ${status.open_round.number} is paused with` : `Round ${status.open_round.number} closes in`}
             </p>
             {/* While paused the countdown stands still at the time the round had left when the pause began. */}
@@ -55,7 +55,7 @@ export function DisplayHeader({ event, status }: { event: DisplayEvent; status: 
       </div>
 
       <div className="flex items-center gap-8">
-        <span className={`rounded-xl px-6 py-2 text-[44px] font-black tracking-wider ${BADGE[status.trading]}`} data-testid="display-trading">
+        <span className={`rounded-sm px-6 py-2 text-[44px] font-black tracking-wider ${BADGE[status.trading]}`} data-testid="display-trading">
           {status.trading}
         </span>
         <div className="text-right">
