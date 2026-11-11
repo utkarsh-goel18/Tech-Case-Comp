@@ -114,23 +114,23 @@ export default async function TeamLayout({ children }: LayoutProps<"/team">) {
           <ActionBar task={next && next.href ? { title: next.title, href: next.href, linkLabel: next.linkLabel, due: next.due } : null} />
           <Alerts tasks={plan ? alertTasks(plan) : []} track={team.track} teamId={team.id} />
           {status.paused ? (
-            <p className="bg-amber-100 px-4 py-2 text-center text-sm font-medium text-amber-900">
+            <p className="border-y border-[#ead39a] bg-[#fff4dc] px-4 py-2 text-center text-sm font-semibold text-[#76500e]">
               The event is paused. Deadlines move later by the length of the pause.
             </p>
           ) : null}
           {team.disqualified ? (
-            <p className="bg-red-100 px-4 py-2 text-center text-sm font-medium text-red-900">
+            <p className="border-y border-[#efc3bd] bg-[#fae9e6] px-4 py-2 text-center text-sm font-semibold text-[#8c2e27]">
               Your team has been disqualified by the fairness officer{team.disqualified_reason ? `: ${team.disqualified_reason}` : "."}
             </p>
           ) : null}
           {latest ? (
             <Link
               href="/team/bulletins"
-              className="mx-auto block max-w-5xl px-4 pt-3 text-sm [overflow-wrap:anywhere]"
+              className="mx-auto block max-w-5xl border-b border-[#d9dfd9] px-4 py-3 text-sm [overflow-wrap:anywhere] hover:bg-white/60"
               data-testid="latest-bulletin"
             >
-              <span className="rounded bg-slate-900 px-2 py-0.5 text-xs font-semibold text-white">{latest.kind}</span>{" "}
-              <span className="font-mono text-xs text-slate-500">{clock(latest.published_at)}</span>{" "}
+              <span className="rounded-sm bg-[#24312b] px-2 py-0.5 font-mono text-[10px] font-bold uppercase tracking-wide text-[#c9f36a]">{latest.kind}</span>{" "}
+              <span className="font-mono text-xs tabular-nums text-[#64716a]">{clock(latest.published_at)}</span>{" "}
               <span className="font-semibold text-slate-900 underline-offset-2 hover:underline">{latest.title}</span>
             </Link>
           ) : null}
