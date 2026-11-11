@@ -18,13 +18,13 @@ const BADGE: Record<EventStatus["trading"], string> = {
 
 export function DisplayHeader({ event, status }: { event: DisplayEvent; status: EventStatus }) {
   return (
-    <header className="flex h-[150px] shrink-0 items-center justify-between gap-10 border-b-4 border-white/20 px-12" data-testid="display-header">
+    <header className="flex h-[150px] shrink-0 items-center justify-between gap-10 border-b-4 border-[#c9f36a]/50 px-12" data-testid="display-header">
       <div className="min-w-0">
-        <p className="truncate text-[28px] font-medium text-slate-300">
+        <p className="truncate text-[28px] font-medium text-[#aeb9b1]">
           {event.name}
           {event.is_rehearsal ? <span className="ml-4 rounded bg-violet-500 px-3 py-0.5 text-[22px] font-bold text-white">Rehearsal ×{event.clock_speed}</span> : null}
         </p>
-        <p className="text-[60px] leading-tight font-black tracking-tight" data-testid="display-phase">
+        <p className="text-[60px] leading-tight font-black tracking-tight text-[#c9f36a]" data-testid="display-phase">
           {PHASE_LABELS[status.phase]}
         </p>
       </div>
@@ -36,7 +36,7 @@ export function DisplayHeader({ event, status }: { event: DisplayEvent; status: 
               {status.paused ? `Round ${status.open_round.number} is paused with` : `Round ${status.open_round.number} closes in`}
             </p>
             {/* While paused the countdown stands still at the time the round had left when the pause began. */}
-            <p className={`text-[76px] leading-none font-black ${status.paused ? "text-amber-300" : ""}`}>
+            <p className={`text-[76px] leading-none font-black ${status.paused ? "text-amber-300" : "text-[#c9f36a]"}`}>
               <Countdown to={status.open_round.closes_at} passed={status.paused ? "0:00" : "clearing…"} />
             </p>
           </>
