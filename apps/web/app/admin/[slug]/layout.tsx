@@ -11,6 +11,7 @@ import { SignOutButton } from "@/components/sign-out-button";
 import { Badge } from "@/components/ui/ui";
 import { ServerClock } from "@/components/ui/countdown";
 import { RealtimeDot } from "@/components/ui/realtime-dot";
+import { RouteHeading } from "@/components/route-heading";
 import { AdminNav } from "./nav";
 
 export const metadata: Metadata = { title: { template: "%s · Control panel", default: "Control panel" } };
@@ -56,7 +57,7 @@ export default async function EventAdminLayout({ children, params }: LayoutProps
             <AdminNav slug={slug} fairness={viewer!.role === "FAIRNESS"} />
           </header>
           <FeedbackBar className="mx-auto max-w-[1440px] px-4 pt-4" />
-          <main id="main-content" className="primus-main">{children}</main>
+          <main id="main-content" className="primus-main"><RouteHeading />{children}</main>
         </div>
       </FeedbackProvider>
       </EventChannel>
