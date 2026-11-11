@@ -39,7 +39,7 @@ export default async function EventAdminLayout({ children, params }: LayoutProps
                   Events
                 </Link>
                 
-                <div className="flex items-center gap-2"><span className="primus-brand-mark">P.</span><h1 className="text-sm font-bold tracking-wide text-[#f4f6f1]">PRIMUS <span className="font-normal text-[#aeb9b1]">/ {event.name}</span></h1></div>
+                <div className="flex items-center gap-2"><span className="primus-brand-mark">P.</span><p className="text-sm font-bold tracking-wide text-[#f4f6f1]">PRIMUS <span className="font-normal text-[#aeb9b1]">/ {event.name}</span></p></div>
                 {event.is_rehearsal ? <Badge tone="violet">Rehearsal ×{event.clock_speed}</Badge> : <Badge tone="blue">Live</Badge>}
                 <Badge tone="slate">{PHASE_LABELS[status.phase]}</Badge>
                 <Badge tone={status.trading === "OPEN" ? "green" : status.trading === "PAUSED" ? "amber" : "slate"}>{status.trading}</Badge>
