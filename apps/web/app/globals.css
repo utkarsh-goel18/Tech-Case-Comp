@@ -96,7 +96,8 @@ body {
   padding: .9rem 1.1rem;
 }
 .primus-panel-title { color: var(--ink); font-size: .9rem; font-weight: 750; letter-spacing: -.015em; }
-.primus-panel-body { padding: 1.1rem; overflow-wrap: anywhere; }\n.primus-panel-body > :first-child { min-width: 0; }
+.primus-panel-body { padding: 1.1rem; overflow-wrap: anywhere; }
+.primus-panel-body > :first-child { min-width: 0; }
 .primus-stat {
   border: 1px solid var(--line); border-radius: 7px;
   background: #f7f8f5; padding: .8rem .9rem;
@@ -134,7 +135,8 @@ body {
   .primus-main { padding: 1.1rem .85rem 3rem; }
   .primus-main-narrow { padding: 1rem .85rem 3rem; }
   .primus-panel-body { padding: .9rem; }
-  .primus-panel-head { padding: .8rem .9rem; }\n  .primus-brand { font-size: .68rem; letter-spacing: .14em; }
+  .primus-panel-head { padding: .8rem .9rem; }
+  .primus-brand { font-size: .68rem; letter-spacing: .14em; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
