@@ -2,8 +2,8 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Market Simulation",
-  description: "Live trading simulation for the overnight Market Simulation Competition",
+  title: "PRIMUS ’26",
+  description: "The live competition workspace for PRIMUS ’26",
 };
 
 export const viewport: Viewport = { width: "device-width", initialScale: 1 };
