@@ -1,104 +1,77 @@
-// Small building blocks shared by every area: panels, badges, tables and the result of an action.
-
+// Shared presentation primitives. Behaviour and data contracts remain owned by the calling routes.
 import type { ReactNode } from "react";
 
 export function Panel({ title, actions, children, className = "" }: { title?: ReactNode; actions?: ReactNode; children: ReactNode; className?: string }) {
   return (
-    <section className={`min-w-0 rounded-lg border border-slate-200 bg-white shadow-sm ${className}`}>
+    <section className={`primus-panel min-w-0 ${className}`}>
       {title || actions ? (
-        <header className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-100 px-4 py-3">
-          {title ? <h2 className="min-w-0 text-base font-semibold text-slate-900 [overflow-wrap:anywhere]">{title}</h2> : <span />}
+        <header className="primus-panel-head">
+          {title ? <h2 className="primus-panel-title min-w-0 [overflow-wrap:anywhere]">{title}</h2> : <span />}
           {actions ? <div className="flex flex-wrap items-center gap-2">{actions}</div> : null}
         </header>
       ) : null}
-      {/* Text typed by organisers (a URL in a bulletin, a long reason) wraps instead of widening the page. Table cells
-          do not wrap (Td), so tables are unaffected. */}
-      <div className="p-4 [overflow-wrap:anywhere]">{children}</div>
+      <div className="primus-panel-body">{children}</div>
     </section>
   );
 }
 
 const TONES = {
-  slate: "bg-slate-100 text-slate-700 ring-slate-200",
-  green: "bg-emerald-50 text-emerald-800 ring-emerald-200",
-  amber: "bg-amber-50 text-amber-800 ring-amber-200",
-  red: "bg-red-50 text-red-800 ring-red-200",
-  blue: "bg-sky-50 text-sky-800 ring-sky-200",
-  violet: "bg-violet-50 text-violet-800 ring-violet-200",
+  slate: "bg-[#edf0ec] text-[#435149] ring-[#d9dfd9]",
+  green: "bg-[#eaf5d9] text-[#35521d] ring-[#cfe4ae]",
+  amber: "bg-[#fff4dc] text-[#76500e] ring-[#f1d89c]",
+  red: "bg-[#fae9e6] text-[#8c2e27] ring-[#efc3bd]",
+  blue: "bg-[#e8f1f4] text-[#285363] ring-[#c8dce2]",
+  violet: "bg-[#f0ebf7] text-[#60437d] ring-[#ded0ed]",
 } as const;
 export type Tone = keyof typeof TONES;
 
 export function Badge({ tone = "slate", children }: { tone?: Tone; children: ReactNode }) {
-  return <span className={`inline-flex items-center rounded-full px-2 py-0.5 text-xs font-semibold ring-1 ring-inset ${TONES[tone]}`}>{children}</span>;
+  return <span className={`inline-flex items-center rounded-sm px-2 py-1 font-mono text-[10px] font-bold uppercase tracking-[.08em] ring-1 ring-inset ${TONES[tone]}`}>{children}</span>;
 }
 
-/**
- * A table that scrolls sideways inside its panel on a narrow screen. The scroller can take keyboard focus (arrow
- * keys scroll it) and is named after `label`.
- */
 export function Table({
-  head,
-  children,
-  empty,
-  className = "",
-  label,
+  head, children, empty, className = "", label,
 }: {
-  head: ReactNode[];
-  children: ReactNode;
-  empty?: ReactNode;
-  className?: string;
-  label?: string;
+  head: ReactNode[]; children: ReactNode; empty?: ReactNode; className?: string; label?: string;
 }) {
   const rows = Array.isArray(children) ? children.filter(Boolean) : children;
   const isEmpty = Array.isArray(rows) && rows.length === 0;
   const name = label ?? "Table";
   return (
-    <div
-      role="region"
-      aria-label={name}
-      tabIndex={0}
-      className={`overflow-x-auto rounded focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-900 ${className}`}
-    >
-      <table className="min-w-full text-sm">
-        <thead>
-          <tr className="border-b border-slate-200 text-left text-xs uppercase tracking-wide text-slate-500">
-            {head.map((h, i) => (
-              <th key={i} className="whitespace-nowrap px-2 py-2 font-semibold">
-                {h}
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody className="divide-y divide-slate-100">{rows}</tbody>
+    <div role="region" aria-label={name} tabIndex={0} className={`overflow-x-auto rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#769d35] ${className}`}>
+      <table className="primus-table min-w-full text-sm">
+        <thead><tr className="border-b border-[#d9dfd9] text-left">
+          {head.map((h, i) => <th key={i} className="whitespace-nowrap px-3 py-3">{h}</th>)}
+        </tr></thead>
+        <tbody className="divide-y divide-[#e8ece7]">{rows}</tbody>
       </table>
-      {isEmpty ? <p className="px-2 py-4 text-sm text-slate-500">{empty ?? "Nothing yet."}</p> : null}
+      {isEmpty ? <p className="px-3 py-5 text-sm text-[#64716a]">{empty ?? "Nothing yet."}</p> : null}
     </div>
   );
 }
 
 export function Td({ children, className = "", mono = false }: { children?: ReactNode; className?: string; mono?: boolean }) {
-  return <td className={`whitespace-nowrap px-2 py-1.5 ${mono ? "font-mono tabular-nums" : ""} ${className}`}>{children}</td>;
+  return <td className={`whitespace-nowrap px-3 py-2 ${mono ? "font-mono tabular-nums" : ""} ${className}`}>{children}</td>;
 }
 
 export function Stat({ label, value, hint }: { label: ReactNode; value: ReactNode; hint?: ReactNode }) {
   return (
-    <div className="rounded-md bg-slate-50 px-3 py-2">
-      <div className="text-xs font-medium uppercase tracking-wide text-slate-500">{label}</div>
-      <div className="mt-0.5 text-lg font-semibold tabular-nums text-slate-900">{value}</div>
-      {hint ? <div className="text-xs text-slate-500">{hint}</div> : null}
+    <div className="primus-stat">
+      <div className="primus-stat-label">{label}</div>
+      <div className="primus-stat-value">{value}</div>
+      {hint ? <div className="mt-1 text-xs leading-relaxed text-[#64716a]">{hint}</div> : null}
     </div>
   );
 }
 
 export function Notice({ tone = "slate", children }: { tone?: Tone; children: ReactNode }) {
-  return <div className={`rounded-md px-3 py-2 text-sm ring-1 ring-inset ${TONES[tone]}`}>{children}</div>;
+  return <div className={`rounded-sm px-3 py-2.5 text-sm ring-1 ring-inset ${TONES[tone]}`}>{children}</div>;
 }
 
 export const buttonClass = {
-  primary: "rounded-md bg-slate-900 px-3 py-2 text-sm font-semibold text-white hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-50",
-  secondary:
-    "rounded-md bg-white px-3 py-2 text-sm font-semibold text-slate-900 ring-1 ring-inset ring-slate-300 hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50",
-  danger: "rounded-md bg-red-700 px-3 py-2 text-sm font-semibold text-white hover:bg-red-600 disabled:cursor-not-allowed disabled:opacity-50",
+  primary: "primus-button-primary rounded-sm px-3.5 py-2.5 text-sm disabled:cursor-not-allowed disabled:opacity-50",
+  secondary: "rounded-sm bg-white px-3.5 py-2.5 text-sm font-semibold text-[#24312b] ring-1 ring-inset ring-[#b8c3bb] hover:bg-[#f3f6f1] disabled:cursor-not-allowed disabled:opacity-50",
+  danger: "rounded-sm bg-[#a7352e] px-3.5 py-2.5 text-sm font-semibold text-white hover:bg-[#8d2d27] disabled:cursor-not-allowed disabled:opacity-50",
 } as const;
 
-export const inputClass = "block w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:border-slate-500 focus:outline-none";
+export const inputClass = "block w-full rounded-sm border border-[#b8c3bb] bg-white px-3 py-2.5 text-sm text-[#151a18] placeholder:text-[#89948d] focus:border-[#769d35] focus:outline-none focus:ring-2 focus:ring-[#c9f36a]/40";
