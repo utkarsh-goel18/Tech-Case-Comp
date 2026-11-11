@@ -43,11 +43,11 @@ export function DisplayHeader({ event, status }: { event: DisplayEvent; status: 
           </>
         ) : status.next_round ? (
           <>
-            <p className="text-[32px] font-semibold text-slate-300">Round {status.next_round.number} opens</p>
+            <p className="text-[32px] font-semibold text-[#aeb9b1]">Round {status.next_round.number} opens</p>
             {status.paused ? (
               <p className="text-[56px] leading-none font-black text-amber-300">after the pause</p>
             ) : (
-              <p className="font-mono text-[76px] leading-none font-black tabular-nums">at {clock(status.next_round.opens_at)}</p>
+              <p className="font-mono text-[76px] leading-none font-black tabular-nums text-[#c9f36a]">at {clock(status.next_round.opens_at)}</p>
             )}
           </>
         ) : (
