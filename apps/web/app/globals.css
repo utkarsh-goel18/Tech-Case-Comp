@@ -98,6 +98,11 @@ body {
 .primus-panel-title { color: var(--ink); font-size: .9rem; font-weight: 750; letter-spacing: -.015em; }
 .primus-panel-body { padding: 1.1rem; overflow-wrap: anywhere; }
 .primus-panel-body > :first-child { min-width: 0; }
+.primus-task { border-left-width: 3px; border-left-color: #b8c3bb; }
+.primus-task[data-state="todo"] { border-left-color: #c9f36a; background: #fbfdf7; }
+.primus-task[data-state="waiting"] { border-left-color: #8da8b4; }
+.primus-task[data-state="done"] { border-left-color: #9bb77a; }
+.primus-task[data-state="info"] { border-left-color: #b8c3bb; }
 .primus-stat {
   border: 1px solid var(--line); border-radius: 7px;
   background: #f7f8f5; padding: .8rem .9rem;
