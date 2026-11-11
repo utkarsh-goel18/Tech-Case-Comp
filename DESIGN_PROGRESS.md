@@ -61,10 +61,10 @@ The document contains:
 2. Backend development is ongoing. Frontend work will use existing server-provided data and agreed contracts; it will not invent or simulate missing backend functionality.
 3. Preserve existing server-side authority, database contracts, RLS, audit trails, role gates, route contracts and functional tests.
 4. The visual redesign can proceed independently on the working branch. Any required game-rule/backend changes must be raised as explicit integration dependencies.
-5. No PR has been opened and nothing has been merged into the default branch.
+5. Draft PR #1 is open against `claude/market-simulation-platform-9rk357`; it is not merged. The working branch remains the integration source.
 
 ## Environment limitation
 The current GitHub-connected workflow can inspect and commit repository files, but does not provide a local Node/Postgres/Supabase/browser runtime. Do not claim tests or builds pass until they are run in a real development environment.
 
 ## Next
-Continue the route-by-route participant, organiser and display visual pass. Then create/refresh the draft PR to trigger GitHub CI, fix any failures, and complete the responsive/accessibility review. Do not change legacy domain mechanics until the backend team confirms canonical PRIMUS contracts.
+Continue the route-by-route participant, organiser and display visual pass. GitHub CI has not reported any workflow runs or status checks for the current commits yet; confirm repository Actions are enabled and run the full checks before merge. Do not change legacy domain mechanics until the backend team confirms canonical PRIMUS contracts.
