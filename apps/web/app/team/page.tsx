@@ -97,13 +97,13 @@ export default async function TeamHome() {
           {squad ? (
             <dl className="space-y-2 text-sm">
               <div>
-                <dt className="text-xs text-slate-500">Squad</dt>
+                <dt className="primus-kicker">Squad</dt>
                 <dd className="text-lg font-semibold" data-testid="home-squad">
                   Squad {String(squad.number).padStart(2, "0")}
                 </dd>
               </div>
               <div>
-                <dt className="text-xs text-slate-500">Company</dt>
+                <dt className="primus-kicker">Company</dt>
                 <dd data-testid="home-company">
                   {company?.ticker ? (
                     <>
@@ -200,7 +200,7 @@ export default async function TeamHome() {
 function TaskItem({ t }: { t: HomeTask }) {
   const badge = STATE_BADGES[t.state];
   return (
-    <li className="rounded-md border border-slate-200 p-3" data-testid={`task-${t.key}`} data-state={t.state}>
+    <li className="primus-task border border-[#d9dfd9] bg-white px-4 py-3" data-testid={`task-${t.key}`} data-state={t.state}>
       <div className="flex flex-wrap items-start justify-between gap-x-3 gap-y-1">
         <div className="min-w-0 flex-1">
           <div className="flex flex-wrap items-center gap-2">
