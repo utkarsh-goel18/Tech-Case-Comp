@@ -30,10 +30,10 @@ export function PhaseTimer({
     </p>
   ) : (
     <>
-      <p className="text-[32px] font-semibold text-slate-300" suppressHydrationWarning>
+      <p className="text-[32px] font-semibold text-[#aeb9b1]" suppressHydrationWarning>
         {paused ? "Phase is paused with" : "Phase ends in"}
       </p>
-      <p className={`text-[76px] leading-none font-black ${paused ? "text-amber-300" : ""}`}>
+      <p className={`text-[76px] leading-none font-black ${paused ? "text-amber-300" : "text-[#c9f36a]"}`}>
         <Countdown to={endsAt} passed="now" />
       </p>
     </>
