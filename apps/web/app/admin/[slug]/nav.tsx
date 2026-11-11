@@ -33,7 +33,7 @@ export function AdminNav({ slug, fairness }: { slug: string; fairness: boolean }
     if (t.left < r.left || t.right > r.right) row.scrollLeft += t.left - r.left - (r.width - t.width) / 2;
   }, [pathname]);
   return (
-    <nav ref={nav} className="mx-auto flex max-w-7xl gap-1 overflow-x-auto px-4" aria-label="Sections">
+    <nav ref={nav} className="primus-nav mx-auto flex max-w-[1440px] gap-1 overflow-x-auto border-t border-[#34423a] px-4" aria-label="Sections">
       {SECTIONS.map((s) => {
         const href = `${base}${s.path}`;
         const active = s.path === "" ? pathname === base : pathname.startsWith(href);
@@ -43,7 +43,7 @@ export function AdminNav({ slug, fairness }: { slug: string; fairness: boolean }
             href={href}
             aria-current={active ? "page" : undefined}
             className={`whitespace-nowrap border-b-2 px-3 py-2 text-sm font-medium ${
-              active ? "border-slate-900 text-slate-900" : "border-transparent text-slate-500 hover:text-slate-900"
+              active ? "border-[#c9f36a] text-[#c9f36a]" : "border-transparent text-[#aeb9b1] hover:text-white"
             } ${s.path === "/fairness" && fairness ? "font-semibold" : ""}`}
           >
             {s.label}
