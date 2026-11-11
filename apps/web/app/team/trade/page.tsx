@@ -202,7 +202,7 @@ function Fact({ label, value, hint, testId }: { label: string; value: string; hi
       <dd className="font-mono font-semibold tabular-nums text-slate-900" data-testid={testId}>
         {value}
       </dd>
-      {hint ? <dd className="text-xs text-slate-500">{hint}</dd> : null}
+      {hint ? <dd className="mt-1 text-xs leading-relaxed text-[#64716a]">{hint}</dd> : null}
     </div>
   );
 }
