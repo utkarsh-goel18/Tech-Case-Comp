@@ -28,15 +28,15 @@ export default async function EventAdminLayout({ children, params }: LayoutProps
       <EventChannel eventId={event.id} staff>
         <FeedbackProvider>
         <Heartbeat eventId={event.id} area="admin" tick={organiser} />
-        <div className="min-h-screen bg-slate-50">
-          <header className="border-b border-slate-200 bg-white">
-            <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3 px-4 py-3">
+        <div className="primus-shell">\n          <div className="primus-topline" />
+          <header className="primus-header">
+            <div className="primus-header-inner flex flex-wrap items-center justify-between gap-3 px-4 py-3">
               <div className="flex flex-wrap items-center gap-2">
-                <Link href="/admin" className="text-sm text-slate-500 hover:text-slate-900">
+                <Link href="/admin" className="text-sm text-[#aeb9b1] hover:text-white">
                   Events
                 </Link>
-                <span className="text-slate-300">/</span>
-                <h1 className="text-base font-semibold">{event.name}</h1>
+                
+                <div className="flex items-center gap-2"><span className="primus-brand-mark">P.</span><h1 className="text-sm font-bold tracking-wide text-[#f4f6f1]">PRIMUS <span className="font-normal text-[#aeb9b1]">/ {event.name}</span></h1></div>
                 {event.is_rehearsal ? <Badge tone="violet">Rehearsal ×{event.clock_speed}</Badge> : <Badge tone="blue">Live</Badge>}
                 <Badge tone="slate">{PHASE_LABELS[status.phase]}</Badge>
                 <Badge tone={status.trading === "OPEN" ? "green" : status.trading === "PAUSED" ? "amber" : "slate"}>{status.trading}</Badge>
@@ -44,8 +44,8 @@ export default async function EventAdminLayout({ children, params }: LayoutProps
               <div className="flex items-center gap-3 text-sm">
                 <RealtimeDot />
                 <ServerClock className="text-base font-semibold" />
-                <span className="text-slate-500">IST</span>
-                <span className="hidden text-slate-600 sm:inline">
+                <span className="primus-kicker text-[#91a097]">IST</span>
+                <span className="hidden text-[#c1cbc3] sm:inline">
                   {viewer!.displayName} · {organiser ? "Organiser" : "Fairness officer"}
                 </span>
                 <SignOutButton />
@@ -53,8 +53,8 @@ export default async function EventAdminLayout({ children, params }: LayoutProps
             </div>
             <AdminNav slug={slug} fairness={viewer!.role === "FAIRNESS"} />
           </header>
-          <FeedbackBar className="mx-auto max-w-7xl px-4 pt-4" />
-          <main className="mx-auto max-w-7xl px-4 py-6">{children}</main>
+          <FeedbackBar className="mx-auto max-w-[1440px] px-4 pt-4" />
+          <main className="primus-main">{children}</main>
         </div>
       </FeedbackProvider>
       </EventChannel>
