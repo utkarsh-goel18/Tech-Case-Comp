@@ -39,6 +39,15 @@ export default async function PhaseControl({ params }: PageProps<"/admin/[slug]"
   const blocked = status.gate ?? (status.paused ? "Resume the event before advancing." : null);
 
   return (
+    <>
+    <section className="mb-6 flex flex-col justify-between gap-3 border-b border-[#cbd4cc] pb-5 sm:flex-row sm:items-end">
+      <div>
+        <p className="primus-kicker">PRIMUS / Operations</p>
+        <h1 className="primus-page-title mt-2">Event control<span className="text-[#8aaa4e]">.</span></h1>
+        <p className="mt-2 text-sm text-[#64716a]">Manage the live schedule and event state. All controls remain server-authoritative.</p>
+      </div>
+      <div className="font-mono text-xs font-semibold uppercase tracking-wider text-[#64716a]">Control room / IST</div>
+    </section>
     <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
       {/* At the planned end the gate and the controls change: re-read then, not only on the next broadcast. */}
       <RefreshAt at={status.phase_ends_at} />
@@ -190,5 +199,6 @@ export default async function PhaseControl({ params }: PageProps<"/admin/[slug]"
         </Panel>
       </div>
     </div>
+    </>
   );
 }
