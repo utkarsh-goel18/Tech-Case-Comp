@@ -48,7 +48,7 @@ export default async function IpoPage() {
   if (win === "ALLOCATED") {
     const books = new Map(data.ipoBooks.map((b) => [b.company_id, b.details]));
     return (
-      <div className="space-y-4">
+      <div className="finance-terminal space-y-4">
         <Panel title="IPO allocation">
           <p className="text-sm text-slate-600" data-testid="ipo-state">
             The IPO was allocated at {clock(data.ipoAllocatedAt)}. Unallocated shares stay with the exchange.
