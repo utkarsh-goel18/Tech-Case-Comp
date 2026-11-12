@@ -444,3 +444,80 @@ body { margin: 0; background: var(--background); color: var(--foreground); font-
   .matrix-logo-main,.matrix-logo-glitch-a,.matrix-logo-glitch-b,.matrix-cursor { animation:none !important; }
   .matrix-logo-glitch { display:none; }
 }
+
+/* CINEMATIC LOGIN: full-viewport rain, centered glitch reveal, then credentials */
+.matrix-login {
+  position:relative; isolation:isolate; display:flex; align-items:center; justify-content:center;
+  width:100%; min-height:100svh; overflow:hidden; padding:clamp(1rem,3vw,2.75rem);
+  background:#020604; color:#effff3;
+}
+.matrix-login-shell { width:min(1320px,100%); min-width:0; margin:auto; position:relative; z-index:2; }
+.matrix-rain-canvas {
+  position:fixed !important; inset:0 !important; z-index:-2 !important; display:block;
+  width:100vw !important; height:100vh !important; height:100dvh !important;
+  max-width:100vw; pointer-events:none; opacity:.72;
+}
+.matrix-scanlines {
+  position:fixed; inset:0; z-index:-1; pointer-events:none;
+  background:repeating-linear-gradient(to bottom,transparent 0,transparent 3px,rgba(0,0,0,.22) 4px,rgba(0,0,0,.22) 5px),
+    radial-gradient(ellipse at 50% 45%,transparent 20%,rgba(0,0,0,.62) 100%);
+  mix-blend-mode:screen; opacity:.6;
+}
+.matrix-login-topline { min-height:38px; }
+.matrix-login-layout { min-height:min(760px,calc(100svh - 100px)); }
+.matrix-login-brand,.matrix-auth-wrap { opacity:0; animation:matrix-content-arrive .85s cubic-bezier(.18,.8,.22,1) 2.05s forwards; }
+.matrix-login-brand { transform:translateX(-28px); }
+.matrix-auth-wrap { transform:translateY(28px) scale(.985); }
+.matrix-intro {
+  position:fixed; inset:0; z-index:10; display:flex; flex-direction:column; align-items:center; justify-content:center;
+  gap:1.4rem; pointer-events:none; background:rgba(1,5,2,.2);
+  animation:matrix-intro-dismiss .75s ease-in 1.55s forwards;
+}
+.matrix-intro-logo {
+  display:block; width:min(62vw,760px); height:auto; opacity:0;
+  filter:drop-shadow(0 0 10px rgba(57,255,136,.95)) drop-shadow(0 0 35px rgba(0,230,118,.65));
+  animation:matrix-logo-materialise 1.55s steps(1,end) .12s both;
+}
+.matrix-intro-caption {
+  color:#8dffb3; font:700 .65rem var(--font-mono); letter-spacing:.28em;
+  text-shadow:0 0 12px #00e676; opacity:0;
+  animation:matrix-caption-in .5s ease .85s forwards;
+}
+.matrix-intro-flash {
+  position:absolute; inset:0; opacity:0; pointer-events:none;
+  background:linear-gradient(transparent 49.5%,rgba(57,255,136,.55) 50%,transparent 50.5%);
+  animation:matrix-scan-flash .65s ease-out .2s both;
+}
+.matrix-logo-stage { overflow:visible; }
+.matrix-logo-main { animation:matrix-logo-breathe 4.5s ease-in-out 2.7s infinite; }
+.matrix-login-footer { opacity:0; animation:matrix-content-arrive .65s ease 2.3s forwards; }
+@keyframes matrix-content-arrive {
+  from { opacity:0; filter:blur(8px); }
+  to { opacity:1; filter:blur(0); transform:translate(0) scale(1); }
+}
+@keyframes matrix-logo-materialise {
+  0% { opacity:0; transform:scale(.82) skewX(-8deg); clip-path:inset(0 100% 0 0); }
+  12% { opacity:1; clip-path:inset(0 0 0 0); transform:scale(1.04) skewX(3deg); }
+  18% { opacity:.25; transform:translateX(-12px); clip-path:inset(12% 0 62% 0); }
+  23% { opacity:1; transform:translateX(9px); clip-path:inset(54% 0 20% 0); }
+  31% { opacity:1; transform:translateX(-3px); clip-path:inset(0); }
+  42% { opacity:.72; transform:scale(1.015); filter:drop-shadow(0 0 22px #39ff88); }
+  56%,100% { opacity:1; transform:scale(1); clip-path:inset(0); }
+}
+@keyframes matrix-caption-in { to { opacity:1; } }
+@keyframes matrix-scan-flash { 0% { opacity:0; transform:translateY(-45vh); } 35% { opacity:.8; } 100% { opacity:0; transform:translateY(45vh); } }
+@keyframes matrix-intro-dismiss { 0% { opacity:1; visibility:visible; } 75% { opacity:1; } 100% { opacity:0; visibility:hidden; } }
+@media (max-width:900px) {
+  .matrix-login { align-items:flex-start; }
+  .matrix-login-layout { min-height:auto; padding:2.5rem 0 2rem; }
+}
+@media (max-width:640px) {
+  .matrix-login { padding:0 .9rem; }
+  .matrix-login-topline { font-size:.48rem; letter-spacing:.08em; }
+  .matrix-intro-logo { width:min(84vw,520px); }
+  .matrix-intro-caption { font-size:.52rem; letter-spacing:.17em; }
+}
+@media (prefers-reduced-motion:reduce) {
+  .matrix-intro { display:none; }
+  .matrix-login-brand,.matrix-auth-wrap,.matrix-login-footer { opacity:1; animation:none; transform:none; filter:none; }
+}
