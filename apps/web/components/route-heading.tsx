@@ -14,8 +14,8 @@ const TEAM: Record<string, Copy> = {
   "/team/qa": { eyebrow: "Participant / Communication", title: "Public Q&A", description: "Read the public questions and responses, and contribute when your role allows." },
   "/team/chat": { eyebrow: "Participant / Communication", title: "Squad channel", description: "Coordinate with the other teams in your squad." },
   "/team/bulletins": { eyebrow: "Official communication", title: "Event bulletins", description: "The official announcements published by the organisers." },
-  "/team/market": { eyebrow: "Market / Overview", title: "Company board", description: "Browse listed companies, their prices and the latest cleared movement." },
-  "/team/trade": { eyebrow: "Market / Orders", title: "Trading desk", description: "Review your available funds and manage orders during an open round." },
+  "/team/market": { eyebrow: "MARKETS / LIVE EXCHANGE", title: "Market watch", description: "Track every listed PRIMUS company, compare price movement and open a company market view." },
+  "/team/trade": { eyebrow: "FINANCE / TRADING TERMINAL", title: "Trading terminal", description: "Manage orders, monitor your exposure and follow the live round from one workspace." },
   "/team/trade/ipo": { eyebrow: "Market / Primary issue", title: "IPO desk", description: "Review the primary issue information and available actions." },
   "/team/trade/positions": { eyebrow: "Market / Portfolio", title: "Your positions", description: "Track holdings, portfolio value and profit or loss using the latest available prices." },
   "/team/trade/history": { eyebrow: "Market / Records", title: "Order history", description: "Review submitted orders, fills and their final status." },
@@ -52,13 +52,13 @@ export function RouteHeading() {
   const copy = resolve(pathname);
   if (!copy) return null;
   return (
-    <section className="mb-6 flex flex-col justify-between gap-3 border-b border-[#cbd4cc] pb-5 sm:flex-row sm:items-end">
+    <section className="mb-6 flex flex-col justify-between gap-3 border-b border-[#26372d] pb-5 sm:flex-row sm:items-end">
       <div>
         <p className="primus-kicker">{copy.eyebrow}</p>
-        <h1 className="primus-page-title mt-2">{copy.title}<span className="text-[#8aaa4e]">.</span></h1>
-        <p className="mt-2 max-w-2xl text-sm leading-relaxed text-[#64716a]">{copy.description}</p>
+        <h1 className="primus-page-title mt-2">{copy.title}<span className="text-[#b7f34b]">.</span></h1>
+        <p className="mt-2 max-w-2xl text-sm leading-relaxed text-[#91a397]">{copy.description}</p>
       </div>
-      <p className="font-mono text-[10px] font-semibold uppercase tracking-[.12em] text-[#849087]">PRIMUS / Live workspace</p>
+      <p className="font-mono text-[10px] font-semibold uppercase tracking-[.12em] text-[#819489]">PRIMUS / Live workspace</p>
     </section>
   );
 }
