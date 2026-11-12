@@ -27,16 +27,16 @@ export default async function MarketPage() {
     return (
       <Panel title="Market">
         <Notice>{marketOpensText(data?.starts_at)}</Notice>
-      </Panel>
+      </div></section>
     );
   }
   const [list, released] = await Promise.all([loadMarketList(event.id), loadReleased(sb, event.id)]);
   const lines = marketLines(list.companies, list.lastRound?.rows ?? []);
 
   return (
-    <div className="space-y-6">
+    <div className="finance-terminal space-y-5">
       <BookTabs open={openBooks(status.phase, released)} current="PRICES" />
-      <Panel title={`Listed companies (${lines.length})`}>
+      <section className="finance-card"><div className="finance-card-head"><div><p className="finance-section-label">PRIMUS EXCHANGE</p><h2 className="finance-card-title mt-1">Market watch <span className="ml-2 font-mono text-xs text-[#8fa397]">{lines.length} LISTED</span></h2></div><span className="finance-pill finance-pill-live">Exchange feed</span></div><div className="finance-card-body">
         {!released.PITCH ? (
           <p className="mb-3 text-sm text-slate-500">IPO prices are released at the IPO, with the pitch scores. Until then, read the pitch book.</p>
         ) : null}
