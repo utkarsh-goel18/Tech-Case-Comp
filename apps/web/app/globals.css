@@ -177,3 +177,133 @@ body {
 @keyframes msim-ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 .msim-ticker-track { animation: msim-ticker var(--ticker-seconds, 60s) linear infinite; }
 @media (prefers-reduced-motion: reduce) { .msim-ticker-track { animation: none; } }
+
+
+/* ============================================================
+   PRIMUS MATRIX TERMINAL — Olymptrade-inspired trading UX
+   Original visual language; no copied assets or brand elements.
+   ============================================================ */
+:root {
+  color-scheme: dark;
+  --background: #070b0a;
+  --foreground: #e5eee8;
+  --surface: #0d1411;
+  --surface-muted: #111c17;
+  --ink: #e8f4ec;
+  --ink-soft: #b6c9bc;
+  --muted: #82958a;
+  --line: #1c3026;
+  --line-strong: #2a4737;
+  --signal: #b6ff45;
+  --signal-ink: #101a0b;
+  --warning: #ffc857;
+  --danger: #ff657a;
+}
+html, body { background: var(--background); color: var(--foreground); }
+body {
+  background-image:
+    radial-gradient(ellipse at 50% -18%, rgb(61 255 132 / 7%), transparent 42%),
+    linear-gradient(180deg, #080e0b 0%, #070b0a 42%, #090f0c 100%);
+}
+::selection { background: #b6ff45; color: #071009; }
+:focus-visible { outline-color: #b6ff45; }
+.primus-shell { background: transparent; }
+.primus-topline { height: 2px; background: linear-gradient(90deg, #7dff47, #caff57 50%, #36d98b); }
+.primus-header {
+  color: #eaf5ed;
+  background: rgb(8 14 11 / 94%);
+  border-bottom: 1px solid #20392b;
+  box-shadow: 0 10px 30px rgb(0 0 0 / 18%);
+  backdrop-filter: blur(16px);
+}
+.primus-brand { color: #f0fff4; }
+.primus-brand-mark {
+  background: #b6ff45; color: #0a140b;
+  box-shadow: 0 0 22px rgb(182 255 69 / 20%);
+}
+.primus-kicker { color: #8da797; }
+.primus-page-title { color: #f0fff4; }
+.primus-nav a { color: #91a69a; }
+.primus-nav a:hover { color: #eaffef; }
+.primus-nav a[aria-current="page"] {
+  color: #c5ff70; border-color: #b6ff45;
+  text-shadow: 0 0 16px rgb(182 255 69 / 22%);
+}
+.primus-main, .primus-main-narrow { color: #dce9e0; }
+.primus-panel {
+  border: 1px solid #1d3428;
+  border-radius: 10px;
+  background: linear-gradient(145deg, rgb(16 27 21 / 98%), rgb(10 17 13 / 98%));
+  color: #e3eee7;
+  box-shadow: 0 8px 28px rgb(0 0 0 / 18%), inset 0 1px 0 rgb(255 255 255 / 2%);
+}
+.primus-panel-head { border-bottom: 1px solid #20372a; }
+.primus-panel-title { color: #eaf6ed; }
+.primus-panel-body { color: #c6d5cb; }
+.primus-task { border-left-color: #385244; }
+.primus-task[data-state="todo"] { border-left-color: #b6ff45; background: #111d13; }
+.primus-task[data-state="waiting"] { border-left-color: #54b6c8; background: #0e1b1d; }
+.primus-task[data-state="done"] { border-left-color: #5ed69a; background: #0d1c16; }
+.primus-task[data-state="info"] { border-left-color: #526c5c; background: #101914; }
+.primus-stat { border: 1px solid #20372a; background: linear-gradient(145deg, #111d16, #0c1510); }
+.primus-stat-label { color: #8ba294; }
+.primus-stat-value { color: #edfff1; }
+.primus-table { color: #d8e7dd; }
+.primus-table thead { background: #142219; }
+.primus-table th { color: #91a99a; }
+.primus-table tbody tr { border-bottom-color: #1b3024; }
+.primus-button-primary {
+  border-radius: 6px; background: #b6ff45; color: #0b1609;
+  box-shadow: 0 0 20px rgb(182 255 69 / 10%);
+}
+.primus-button-primary:hover { background: #ccff78; box-shadow: 0 0 24px rgb(182 255 69 / 20%); }
+.primus-login {
+  color: #eff9f1;
+  background:
+    radial-gradient(ellipse at 72% 10%, rgb(60 255 130 / 12%), transparent 42%),
+    radial-gradient(ellipse at 10% 90%, rgb(182 255 69 / 7%), transparent 35%),
+    #070d0a;
+}
+.primus-login-grid {
+  background-image:
+    linear-gradient(rgb(117 255 160 / 4%) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(117 255 160 / 4%) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+.primus-divider { border-color: #20372a; }
+
+/* Route-level defaults: ensure legacy Tailwind pages inherit the terminal palette. */
+.primus-main table:not(.primus-table) { color: #d8e7dd; }
+.primus-main table:not(.primus-table) thead { background: #142219; }
+.primus-main table:not(.primus-table) th { color: #91a99a; }
+.primus-main table:not(.primus-table) tbody tr { border-bottom-color: #1b3024; }
+.primus-main input:not([type="checkbox"]):not([type="radio"]):not([type="hidden"]),
+.primus-main textarea, .primus-main select {
+  border-color: #2b4737; background-color: #0b1510; color: #e4f0e7;
+}
+.primus-main input::placeholder, .primus-main textarea::placeholder { color: #70877a; }
+.primus-main input:focus-visible, .primus-main textarea:focus-visible, .primus-main select:focus-visible {
+  outline-color: #b6ff45; border-color: #8bcf45;
+}
+.primus-main a { color: #b9f879; }
+.primus-main button:disabled { opacity: .42; }
+.primus-header button:focus-visible, .primus-nav a:focus-visible { outline-color: #b6ff45; }
+
+/* Dark login card and form controls. */
+.primus-login > div {
+  border-color: #294332 !important;
+  background: linear-gradient(145deg, #111c15, #0b120e) !important;
+  box-shadow: 0 24px 80px rgb(0 0 0 / 48%), 0 0 60px rgb(66 255 132 / 5%) !important;
+}
+.primus-login h1 { color: #edfff1 !important; }
+.primus-login p { color: #9db2a4 !important; }
+.primus-login input:not([type="checkbox"]):not([type="radio"]),
+.primus-login select {
+  border-color: #2b4737 !important; background: #09120d !important; color: #eaffef !important;
+}
+.primus-login input::placeholder { color: #6e8576 !important; }
+
+@media (max-width: 640px) {
+  .primus-panel { border-radius: 8px; }
+  .primus-stat { padding: .7rem; }
+}
