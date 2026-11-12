@@ -42,20 +42,20 @@ export default async function TeamHome() {
       <RefreshAt at={times[0] ?? null} />
       <AutoRefresh everyMs={15_000} active={squadWork} />
 
-      <section className="flex flex-col justify-between gap-4 border-b border-[#cbd4cc] pb-5 sm:flex-row sm:items-end">
+      <section className="flex flex-col justify-between gap-4 border-b border-[#383838] pb-5 sm:flex-row sm:items-end">
         <div>
           <p className="primus-kicker">PRIMUS / Participant workspace</p>
-          <h1 className="primus-page-title mt-2">Command centre<span className="text-[#8aaa4e]">.</span></h1>
-          <p className="mt-2 max-w-xl text-sm leading-relaxed text-[#64716a]">Your live brief for the competition: what needs attention now, what is coming next, and where your team stands.</p>
+          <h1 className="primus-page-title mt-2">Command centre<span className="text-[#00e676]">.</span></h1>
+          <p className="mt-2 max-w-xl text-sm leading-relaxed text-[#999999]">Your live brief for the competition: what needs attention now, what is coming next, and where your team stands.</p>
         </div>
-        <div className="font-mono text-xs font-semibold uppercase tracking-wider text-[#64716a]">
-          <span className="text-[#8aaa4e]">●</span> Live event data
+        <div className="font-mono text-xs font-semibold uppercase tracking-wider text-[#999999]">
+          <span className="text-[#00e676]">●</span> Live event data
         </div>
       </section>
 
       <Panel title="Now">
         {plan.now.length === 0 ? (
-          <p className="text-sm text-slate-700" data-testid="home-idle">
+          <p className="text-sm text-[#d0d0d0]" data-testid="home-idle">
             {plan.idle}
           </p>
         ) : (
@@ -69,21 +69,21 @@ export default async function TeamHome() {
 
       <Panel title="Coming up">
         {plan.next.length === 0 ? (
-          <p className="text-sm text-slate-500">No further deadlines for your team tonight.</p>
+          <p className="text-sm text-[#999999]">No further deadlines for your team tonight.</p>
         ) : (
-          <ul className="divide-y divide-slate-100" aria-label="Coming up">
+          <ul className="divide-y divide-[#383838]" aria-label="Coming up">
             {plan.next.map((n) => (
               <li key={n.key} className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1 py-2 text-sm">
                 <span className="min-w-0">
                   {n.href ? (
-                    <Link href={n.href} className="font-medium text-slate-900 underline-offset-2 hover:underline">
+                    <Link href={n.href} className="font-medium text-[#eeeeee] underline-offset-2 hover:underline">
                       {n.title}
                     </Link>
                   ) : (
-                    <span className="font-medium text-slate-900">{n.title}</span>
+                    <span className="font-medium text-[#eeeeee]">{n.title}</span>
                   )}
                 </span>
-                <span className="whitespace-nowrap font-mono tabular-nums text-slate-600">
+                <span className="whitespace-nowrap font-mono tabular-nums text-[#a0a0a0]">
                   {clock(n.at)} · in <Countdown to={n.at} passed="now" />
                 </span>
               </li>
@@ -108,24 +108,24 @@ export default async function TeamHome() {
                   {company?.ticker ? (
                     <>
                       <span className="font-semibold">{company.name ?? company.ticker}</span>{" "}
-                      <span className="font-mono text-slate-600">({company.ticker})</span>
+                      <span className="font-mono text-[#a0a0a0]">({company.ticker})</span>
                       {marketOpen ? (
                         <>
                           {" "}
-                          <Link href={`/team/market/${company.ticker}`} className="text-slate-600 underline underline-offset-2">
+                          <Link href={`/team/market/${company.ticker}`} className="text-[#a0a0a0] underline underline-offset-2">
                             in the market
                           </Link>
                         </>
                       ) : null}
                     </>
                   ) : (
-                    <span className="text-slate-600">Named, with its ticker, on the pitch card (by the pitch deadline).</span>
+                    <span className="text-[#a0a0a0]">Named, with its ticker, on the pitch card (by the pitch deadline).</span>
                   )}
                 </dd>
               </div>
             </dl>
           ) : (
-            <p className="text-sm text-slate-600" data-testid="home-squad">
+            <p className="text-sm text-[#a0a0a0]" data-testid="home-squad">
               Not drawn yet.
               {data.facts.phaseStarts.SQUAD_DRAW ? ` Squads are drawn at ${clock(data.facts.phaseStarts.SQUAD_DRAW)}.` : ""}
             </p>
@@ -143,13 +143,13 @@ export default async function TeamHome() {
             />
           </div>
           {holdings.lines.length === 0 ? (
-            <p className="mt-3 text-sm text-slate-500">{squad ? "No shares." : "Shares are issued at the squad draw."}</p>
+            <p className="mt-3 text-sm text-[#999999]">{squad ? "No shares." : "Shares are issued at the squad draw."}</p>
           ) : (
             <Table head={["Company", "Lot", "Shares", "Price", "Value"]} label="Your holdings" className="mt-3">
               {holdings.lines.map((l) => (
                 <tr key={l.key}>
                   <Td mono className="font-semibold">
-                    {l.ticker ?? <span className="font-sans font-normal text-slate-600">{l.name}</span>}
+                    {l.ticker ?? <span className="font-sans font-normal text-[#a0a0a0]">{l.name}</span>}
                   </Td>
                   <Td>{l.lotLabel}</Td>
                   <Td mono className="text-right">
@@ -158,7 +158,7 @@ export default async function TeamHome() {
                   <Td mono className="text-right">
                     {money(l.price)}
                   </Td>
-                  <Td mono className={`text-right ${l.value !== null && l.value < 0 ? "text-red-700" : ""}`}>
+                  <Td mono className={`text-right ${l.value !== null && l.value < 0 ? "text-[#ff6978]" : ""}`}>
                     {money(l.value)}
                   </Td>
                 </tr>
@@ -166,7 +166,7 @@ export default async function TeamHome() {
             </Table>
           )}
           {holdings.lines.some((l) => l.lot === "SHORT") ? (
-            <p className="mt-2 text-xs text-slate-500">A short is shares owed: its value is what covering it would cost now.</p>
+            <p className="mt-2 text-xs text-[#999999]">A short is shares owed: its value is what covering it would cost now.</p>
           ) : null}
         </Panel>
       </div>
@@ -174,13 +174,13 @@ export default async function TeamHome() {
       <Panel
         title="Latest bulletins"
         actions={
-          <Link href="/team/bulletins" className="text-sm font-medium text-slate-700 underline underline-offset-2">
+          <Link href="/team/bulletins" className="text-sm font-medium text-[#d0d0d0] underline underline-offset-2">
             All bulletins
           </Link>
         }
       >
         {data.bulletins.length === 0 ? (
-          <p className="text-sm text-slate-500">No bulletins yet.</p>
+          <p className="text-sm text-[#999999]">No bulletins yet.</p>
         ) : (
           <ul className="space-y-3" aria-label="Latest bulletins">
             {data.bulletins.map((b) => (
@@ -204,14 +204,14 @@ function TaskItem({ t }: { t: HomeTask }) {
       <div className="flex flex-wrap items-start justify-between gap-x-3 gap-y-1">
         <div className="min-w-0 flex-1">
           <div className="flex flex-wrap items-center gap-2">
-            <h3 className="font-semibold text-slate-900">{t.title}</h3>
+            <h3 className="font-semibold text-[#eeeeee]">{t.title}</h3>
             {badge ? <Badge tone={badge.tone}>{badge.label}</Badge> : null}
           </div>
-          <p className="mt-1 text-sm text-slate-600">{t.detail}</p>
+          <p className="mt-1 text-sm text-[#a0a0a0]">{t.detail}</p>
         </div>
         {t.due ? (
           <p className="whitespace-nowrap text-right text-sm">
-            <span className="block text-xs text-slate-500">{t.dueLabel} · {clock(t.due)}</span>
+            <span className="block text-xs text-[#999999]">{t.dueLabel} · {clock(t.due)}</span>
             <Countdown to={t.due} passed="closed" className="font-semibold" />
           </p>
         ) : null}
