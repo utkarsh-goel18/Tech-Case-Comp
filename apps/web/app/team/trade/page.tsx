@@ -59,7 +59,7 @@ export default async function TradePage() {
   const ownTicker = own?.ticker ?? null;
 
   return (
-    <div className="space-y-4">
+    <div className="finance-terminal">
       <RefreshAt at={accepting ? status.open_round!.closes_at : (notice?.next?.opensAt ?? null)} />
       <AutoRefresh everyMs={10_000} active={accepting} />
 
@@ -74,10 +74,16 @@ export default async function TradePage() {
         </Notice>
       ) : null}
 
-      <div className={accepting ? "grid gap-4 lg:grid-cols-5" : "space-y-4"}>
+      <section className="finance-overview" aria-label="Fund overview">
+        <Metric label="Cash balance" value={money(summary.cash)} />
+        <Metric label="Available to trade" value={money(summary.available)} note="After collateral and open-order reserves" />
+        <Metric label="Collateral locked" value={money(summary.collateral)} note="150% of short exposure" />
+        <Metric label="Open-order reserve" value={money(summary.reserved)} />
+      </section>
+      <div className={accepting ? "finance-workbench" : "grid grid-cols-1 gap-4 xl:grid-cols-2"}>
         {accepting ? (
           <Panel
-            className="lg:col-span-3 lg:self-start"
+            className="min-w-0"
             title={`Order ticket · round ${status.open_round!.number}`}
             actions={
               <span className="text-sm text-slate-600">
@@ -102,7 +108,7 @@ export default async function TradePage() {
           </Panel>
         ) : null}
 
-        <div className="min-w-0 space-y-4 lg:col-span-2">
+        <div className="min-w-0 space-y-4">
           {shownRound && (accepting || open.length > 0) ? (
             <Panel
               title={`Open orders · round ${shownRound.number}`}
@@ -142,12 +148,12 @@ export default async function TradePage() {
             </Panel>
           ) : null}
 
-          <Panel title="Cash and limits">
+          <Panel title="Risk & buying power" actions={<span className="finance-pill">Account controls</span>}>
             <dl className="grid grid-cols-2 gap-x-4 gap-y-3 text-sm">
               <Fact label="Cash" value={money(summary.cash)} />
               <Fact label="Collateral locked" value={money(summary.collateral)} hint="150% of your shorts' value" />
               <Fact label="Reserved by open orders" value={money(summary.reserved)} testId="reserved" />
-              <Fact label="Available cash" value={money(summary.available)} hint="Cash − collateral − reserves" testId="available" />
+              <Fact label="Buying power" value={money(summary.available)} hint="Cash − collateral − reserves" testId="available" />
               <Fact
                 label="Short exposure"
                 value={money(summary.shortExposureWithPending)}
@@ -165,6 +171,16 @@ export default async function TradePage() {
           </Panel>
         </div>
       </div>
+    </div>
+  );
+}
+
+function Metric({ label, value, note }: { label: string; value: string; note?: string }) {
+  return (
+    <div className="primus-stat min-w-0">
+      <div className="primus-stat-label">{label}</div>
+      <div className="primus-stat-value font-mono">{value}</div>
+      {note ? <p className="mt-1 text-[11px] leading-relaxed text-[#819489]">{note}</p> : null}
     </div>
   );
 }
