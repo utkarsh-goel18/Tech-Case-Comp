@@ -51,7 +51,17 @@ export function MatrixRain() {
         }
       }
     } else {
-      raf = window.requestAnimationFrame(draw);
+      // Keep the canvas truly dormant during the logo boot sequence.
+      // The rain begins only when the PRIMUS wordmark has finished assembling.
+      const rainStart = window.setTimeout(() => {
+        raf = window.requestAnimationFrame(draw);
+      }, 3900);
+      window.addEventListener("resize", resize);
+      return () => {
+        window.clearTimeout(rainStart);
+        window.cancelAnimationFrame(raf);
+        window.removeEventListener("resize", resize);
+      };
     }
     window.addEventListener("resize", resize);
     return () => { window.cancelAnimationFrame(raf); window.removeEventListener("resize", resize); };
