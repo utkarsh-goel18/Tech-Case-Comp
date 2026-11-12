@@ -35,7 +35,7 @@ export default async function PositionsPage() {
   const priceWord = closed ? "closing" : "market";
 
   return (
-    <div className="space-y-4">
+    <div className="finance-terminal space-y-4">
       {closed ? (
         <Notice>
           The market closed at {clock(data.marketClosedAt)}: every short was covered at the closing price, and positions are valued at closing prices.
