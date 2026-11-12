@@ -27,7 +27,7 @@ export default async function MarketPage() {
     return (
       <Panel title="Market">
         <Notice>{marketOpensText(data?.starts_at)}</Notice>
-      </div></section>
+      </Panel>
     );
   }
   const [list, released] = await Promise.all([loadMarketList(event.id), loadReleased(sb, event.id)]);
@@ -88,7 +88,7 @@ export default async function MarketPage() {
           In ticker order. {list.lastRound ? `The last column is the move in round ${list.lastRound.number}, the last round cleared. ` : ""}Open a company for
           everything public about it and its price history, round by round.
         </p>
-      </Panel>
+      </div></section>
     </div>
   );
 }
