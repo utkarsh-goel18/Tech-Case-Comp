@@ -321,3 +321,12 @@ body { margin: 0; background: var(--background); color: var(--foreground); font-
   .primus-button-primary,.finance-terminal .primus-button-primary { transition:none; }
   .primus-button-primary:hover,.finance-terminal .primus-button-primary:hover { transform:none; }
 }
+
+/* Official PRIMUS wordmark assets */
+.primus-header-logo { display:block; width:clamp(92px,8vw,116px); height:auto; object-fit:contain; filter:drop-shadow(0 0 9px rgb(57 255 136 / 10%)); }
+.primus-login-logo { display:block; width:min(100%,190px); height:auto; object-fit:contain; }
+.primus-brand { gap:.8rem; }
+@media (max-width:520px) {
+  .primus-header-logo { width:88px; }
+  .primus-brand { gap:.55rem; }
+}
