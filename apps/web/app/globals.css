@@ -307,3 +307,76 @@ body {
   .primus-panel { border-radius: 8px; }
   .primus-stat { padding: .7rem; }
 }
+
+
+/* ============================================================
+   MATRIX TERMINAL — dark trading workspace refinement
+   Applies to existing routes/components without changing data
+   contracts, actions, or event logic.
+   ============================================================ */
+.primus-shell { color: var(--foreground); }
+.primus-main { color: var(--foreground); }
+.primus-page-title { color: var(--ink); }
+.primus-kicker { color: var(--muted); }
+.primus-panel {
+  background: linear-gradient(145deg, #101a15 0%, #0c1310 100%);
+  border-color: var(--line);
+  box-shadow: 0 12px 34px rgb(0 0 0 / 18%), inset 0 1px 0 rgb(255 255 255 / 2%);
+}
+.primus-panel-head { border-color: var(--line); }
+.primus-panel-title { color: var(--ink); }
+.primus-stat {
+  background: linear-gradient(145deg, #142019, #0e1712);
+  border-color: var(--line);
+}
+.primus-stat-label { color: #82998b; }
+.primus-stat-value { color: #e8f4ec; }
+.primus-table thead { background: #142019; }
+.primus-table th { color: #8ca394; }
+.primus-table tbody tr { border-color: #1b2c22; }
+.primus-table tbody tr:hover { background: rgb(182 255 69 / 4%); }
+.primus-button-primary { box-shadow: 0 0 18px rgb(182 255 69 / 9%); }
+.primus-header { background: rgb(6 11 8 / 96%); backdrop-filter: blur(16px); }
+.primus-topline { background: linear-gradient(90deg, #b6ff45, #62d98c 55%, #b6ff45); }
+.primus-nav { border-color: #1c3026; }
+.primus-main a { color: #c5ef91; }
+.primus-main a:hover { color: #d9ffad; }
+.primus-main a:focus-visible { outline-color: var(--signal); }
+.primus-main input:not([type="checkbox"]):not([type="radio"]):not([type="hidden"]),
+.primus-main textarea, .primus-main select {
+  background: #0a110d; color: #e5eee8; border-color: #2a4737;
+}
+.primus-main input::placeholder, .primus-main textarea::placeholder { color: #718579; }
+.primus-main table:not(.primus-table) thead { background: #142019; }
+.primus-main table:not(.primus-table) th { color: #8ca394; }
+.primus-main table:not(.primus-table) tbody tr { border-color: #1b2c22; }
+
+/* Translate legacy utility colours into the Matrix palette inside the app shell. */
+.primus-main .text-slate-900, .primus-main .text-slate-800,
+.primus-main .text-slate-700, .primus-main .text-gray-900 { color: #e5eee8 !important; }
+.primus-main .text-slate-600, .primus-main .text-slate-500,
+.primus-main .text-gray-600, .primus-main .text-gray-500 { color: #91a397 !important; }
+.primus-main .text-emerald-700, .primus-main .text-green-700 { color: #b6ff85 !important; }
+.primus-main .text-red-700, .primus-main .text-rose-700 { color: #ff8290 !important; }
+.primus-main .bg-white, .primus-main .bg-slate-50, .primus-main .bg-slate-100,
+.primus-main .bg-gray-50, .primus-main .bg-gray-100 { background-color: #101a15 !important; }
+.primus-main .border-slate-100, .primus-main .border-slate-200,
+.primus-main .border-slate-300, .primus-main .border-gray-200 { border-color: #20372a !important; }
+.primus-main .divide-slate-100 > :not([hidden]) ~ :not([hidden]) { border-color: #20372a !important; }
+.primus-main .ring-slate-200, .primus-main .ring-slate-300 { --tw-ring-color: #2a4737 !important; }
+.primus-main .hover\\:bg-slate-50:hover, .primus-main .hover\\:bg-white:hover { background-color: #17251b !important; }
+
+/* Status chips remain legible on dark surfaces. */
+.primus-main .bg-emerald-100, .primus-main .bg-green-100 { background: #183522 !important; }
+.primus-main .text-emerald-800, .primus-main .text-green-800 { color: #b6ff85 !important; }
+.primus-main .bg-amber-100, .primus-main .bg-yellow-100 { background: #382b12 !important; }
+.primus-main .text-amber-800, .primus-main .text-yellow-800 { color: #ffd37a !important; }
+.primus-main .bg-red-100, .primus-main .bg-rose-100 { background: #3b1d23 !important; }
+.primus-main .text-red-800, .primus-main .text-rose-800 { color: #ff9aa4 !important; }
+.primus-main .bg-blue-100 { background: #172c39 !important; }
+.primus-main .text-blue-800 { color: #9edcff !important; }
+
+@media (max-width: 640px) {
+  .primus-header-inner { align-items: flex-start; }
+  .primus-main { overflow-x: clip; }
+}
