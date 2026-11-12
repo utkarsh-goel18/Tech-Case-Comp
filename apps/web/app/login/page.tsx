@@ -5,6 +5,7 @@ import { getViewer } from "@/lib/auth/viewer";
 import { safeNext } from "@/lib/auth/routes";
 import { LoginForm } from "./login-form";
 import { MatrixRain } from "./matrix-rain";
+import "./matrix-login.css";
 
 export const metadata: Metadata = { title: "Enter PRIMUS · Market Simulation" };
 
