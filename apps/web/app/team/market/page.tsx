@@ -38,7 +38,7 @@ export default async function MarketPage() {
       <BookTabs open={openBooks(status.phase, released)} current="PRICES" />
       <Panel title={`Listed companies (${lines.length})`}>
         {!released.PITCH ? (
-          <p className="mb-3 text-sm text-slate-600">IPO prices are released at the IPO, with the pitch scores. Until then, read the pitch book.</p>
+          <p className="mb-3 text-sm text-slate-500">IPO prices are released at the IPO, with the pitch scores. Until then, read the pitch book.</p>
         ) : null}
         <Table
           head={["Ticker", "Company", "IPO price", "Market price", list.lastRound ? `Round ${list.lastRound.number}` : "Last round", "Trend"]}
