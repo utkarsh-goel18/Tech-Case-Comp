@@ -34,7 +34,7 @@ export default async function HistoryPage() {
   }
 
   return (
-    <div className="space-y-4">
+    <div className="finance-terminal space-y-4">
       {rounds.map((r) => (
         <Panel
           key={r.number}
