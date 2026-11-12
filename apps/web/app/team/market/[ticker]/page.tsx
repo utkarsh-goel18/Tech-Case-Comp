@@ -30,7 +30,7 @@ export default async function CompanyPage({ params }: PageProps<"/team/market/[t
   );
   if (!phaseReached(status.phase, "READING")) {
     return (
-      <div className="space-y-4">
+      <div className="finance-terminal space-y-4">
         {back}
         <Notice>The market opens at Reading, when the pitch book goes public.</Notice>
       </div>
@@ -51,7 +51,7 @@ export default async function CompanyPage({ params }: PageProps<"/team/market/[t
   const waiting = (["PITCH", "PLAN", "FLASH"] as SubmissionType[]).filter((t) => !types.includes(t));
 
   return (
-    <div className="space-y-6">
+    <div className="finance-terminal space-y-6">
       {back}
       <Panel
         title={
