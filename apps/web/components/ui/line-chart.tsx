@@ -26,15 +26,15 @@ export function LineChart({
   const g = chartGeometry(points, BOX);
   const bottom = BOX.height - BOX.padBottom;
   const up = points.at(-1)!.value >= points[0]!.value;
-  const stroke = up ? "#15803d" : "#b91c1c";
+  const stroke = up ? "#00e676" : "#ff6978";
   const tickStep = g.yTicks.length > 1 ? g.yTicks[1]!.value - g.yTicks[0]!.value : 1;
   return (
     <figure className="w-full" data-testid={testId}>
       <svg viewBox={`0 0 ${BOX.width} ${BOX.height}`} className="h-auto w-full" role="img" aria-label={`${label}: ${chartSummary(points, money)}`}>
         {g.yTicks.map((t) => (
           <g key={t.value}>
-            <line x1={BOX.padLeft} x2={BOX.width - BOX.padRight} y1={t.y} y2={t.y} stroke="#e2e8f0" strokeWidth="1" />
-            <text x={BOX.padLeft - 8} y={t.y + 4} textAnchor="end" fontSize="11" fill="#64748b">
+            <line x1={BOX.padLeft} x2={BOX.width - BOX.padRight} y1={t.y} y2={t.y} stroke="#363636" strokeWidth="1" />
+            <text x={BOX.padLeft - 8} y={t.y + 4} textAnchor="end" fontSize="11" fill="#929292">
               {axisMoney(t.value, tickStep, g.max, money)}
             </text>
           </g>
@@ -43,14 +43,14 @@ export function LineChart({
           .filter((p) => p.marker)
           .map((p) => (
             <g key={`m-${p.x}`}>
-              <line x1={p.x} x2={p.x} y1={BOX.padTop - 4} y2={bottom} stroke="#94a3b8" strokeWidth="1" strokeDasharray="2 3" />
-              <text x={p.x} y={BOX.padTop - 10} textAnchor="middle" fontSize="11" fontWeight="600" fill="#334155">
+              <line x1={p.x} x2={p.x} y1={BOX.padTop - 4} y2={bottom} stroke="#666666" strokeWidth="1" strokeDasharray="2 3" />
+              <text x={p.x} y={BOX.padTop - 10} textAnchor="middle" fontSize="11" fontWeight="600" fill="#bdbdbd">
                 {p.marker}
               </text>
             </g>
           ))}
         <path d={g.area} fill={stroke} opacity="0.08" />
-        {g.path2 ? <path d={g.path2} fill="none" stroke="#7c3aed" strokeWidth="2" strokeDasharray="6 4" /> : null}
+        {g.path2 ? <path d={g.path2} fill="none" stroke="#39b6d8" strokeWidth="2" strokeDasharray="6 4" /> : null}
         <path d={g.path} fill="none" stroke={stroke} strokeWidth="2.5" strokeLinejoin="round" strokeLinecap="round" />
         {g.points.map((p) => (
           <circle key={`p-${p.x}`} cx={p.x} cy={p.y} r="3" fill={stroke}>
@@ -58,13 +58,13 @@ export function LineChart({
           </circle>
         ))}
       </svg>
-      <figcaption className="mt-1 flex flex-wrap gap-x-4 text-xs text-slate-600">
+      <figcaption className="mt-1 flex flex-wrap gap-x-4 text-xs text-[#929292]">
         <span className="inline-flex items-center gap-1">
           <span className="inline-block h-0.5 w-5" style={{ background: stroke }} /> {mainName}
         </span>
         {secondName && g.path2 ? (
           <span className="inline-flex items-center gap-1">
-            <span className="inline-block w-5 border-t-2 border-dashed border-violet-600" /> {secondName}
+            <span className="inline-block w-5 border-t-2 border-dashed border-[#39b6d8]" /> {secondName}
           </span>
         ) : null}
       </figcaption>
@@ -74,11 +74,11 @@ export function LineChart({
 
 /** A small trend line for a table cell; green if the last value is at least the first, red otherwise. */
 export function Sparkline({ values, label }: { values: readonly number[]; label: string }) {
-  if (values.length < 2) return <span className="text-xs text-slate-400">—</span>;
+  if (values.length < 2) return <span className="text-xs text-[#777777]">—</span>;
   const up = values.at(-1)! >= values[0]!;
   return (
     <svg viewBox="0 0 64 20" width="64" height="20" role="img" aria-label={label} className="overflow-visible">
-      <path d={sparkPath(values, 64, 20)} fill="none" stroke={up ? "#15803d" : "#b91c1c"} strokeWidth="1.75" strokeLinejoin="round" />
+      <path d={sparkPath(values, 64, 20)} fill="none" stroke={up ? "#00e676" : "#ff6978"} strokeWidth="1.75" strokeLinejoin="round" />
     </svg>
   );
 }
