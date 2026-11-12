@@ -30,7 +30,7 @@ export function TeamNav({ track }: { track: Track }) {
             href={href}
             aria-current={active ? "page" : undefined}
             className={`whitespace-nowrap border-b-2 px-3 py-2 text-sm font-medium ${
-              active ? "border-[#c9f36a] text-[#c9f36a]" : "border-transparent text-[#aeb9b1] hover:text-white"
+              active ? "border-[#b6ff45] text-[#b6ff45]" : "border-transparent text-[#91a397] hover:text-[#e5eee8]"
             }`}
           >
             {s.label}
