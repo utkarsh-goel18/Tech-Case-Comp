@@ -18,6 +18,11 @@ export default async function LoginPage({ searchParams }: PageProps<"/login">) {
     <main className="primus-login primus-login-grid matrix-login min-h-dvh">
       <MatrixRain />
       <div className="matrix-scanlines" aria-hidden="true" />
+      <div className="matrix-intro" aria-hidden="true">
+        <div className="matrix-intro-flash" />
+        <Image src="/primus-logo-light.svg" alt="" width={760} height={275} priority className="matrix-intro-logo" />
+        <span className="matrix-intro-caption">INITIALISING PRIMUS NETWORK</span>
+      </div>
       <div className="matrix-login-shell">
         <div className="matrix-login-topline">
           <span className="matrix-live-dot" /> PRIMUS NETWORK <span className="matrix-topline-divider">/</span> SECURE ACCESS
