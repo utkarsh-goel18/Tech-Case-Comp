@@ -10,6 +10,9 @@ import { RefreshAt } from "@/lib/live/refresh-at";
 import { Notice, Panel } from "@/components/ui/ui";
 import { Countdown } from "@/components/ui/countdown";
 import { tradeGate } from "./gate";
+import { loadMarketList } from "@/lib/team/market-data";
+import { marketLines } from "@/lib/team/market";
+import { MarketTerminalChart } from "./market-terminal";
 import { OrderTicket, type TicketCompany } from "./ticket";
 import { OpenOrders } from "./open-orders";
 import { cancelOrder, editOrder, placeOrder } from "./actions";
@@ -27,7 +30,7 @@ export default async function TradePage() {
   const gate = tradeGate(ctx);
   if (gate) return gate;
   const { status, company: own } = ctx;
-  const data = await loadTradeData(ctx, { orders: "pending" });
+  const [data, market] = await Promise.all([loadTradeData(ctx, { orders: "pending" }), loadMarketList(ctx.event.id)]);
   const at = (code: "READING" | "IPO" | "ROUNDS_1_4") => (data.phaseStarts[code] ? clock(data.phaseStarts[code]) : null);
 
   if (!phaseReached(status.phase, "READING")) {
@@ -57,6 +60,15 @@ export default async function TradePage() {
     .filter((c) => c.market_price !== null && c.id !== own?.id)
     .map((c) => ({ id: c.id, ticker: c.ticker!, name: c.name, price: c.market_price! }));
   const ownTicker = own?.ticker ?? null;
+  const instruments = marketLines(market.companies, market.lastRound?.rows ?? []).map((line) => ({
+    id: line.id,
+    ticker: line.ticker,
+    name: line.name,
+    price: line.price,
+    ipo: line.ipo,
+    changeBp: line.change?.bp ?? null,
+    trend: market.trends[line.id] ?? [],
+  }));
 
   return (
     <div className="finance-terminal">
@@ -80,11 +92,12 @@ export default async function TradePage() {
         <Metric label="Collateral locked" value={money(summary.collateral)} note="150% of short exposure" />
         <Metric label="Open-order reserve" value={money(summary.reserved)} />
       </section>
+      <MarketTerminalChart instruments={instruments} />
       <div className={accepting ? "finance-workbench" : "grid grid-cols-1 gap-4 xl:grid-cols-2"}>
         {accepting ? (
           <Panel
-            className="min-w-0"
-            title={`Order ticket · round ${status.open_round!.number}`}
+            className="min-w-0 finance-order-panel"
+            title={`Place an order · round ${status.open_round!.number}`}
             actions={
               <span className="text-sm text-slate-600">
                 closes in <Countdown to={status.open_round!.closes_at} passed="now" className="font-semibold text-slate-900" />
@@ -148,7 +161,7 @@ export default async function TradePage() {
             </Panel>
           ) : null}
 
-          <Panel title="Risk & buying power" actions={<span className="finance-pill">Account controls</span>}>
+          <Panel title="Risk & buying power" actions={<span className="finance-pill">Fund account</span>}>
             <dl className="grid grid-cols-2 gap-x-4 gap-y-3 text-sm">
               <Fact label="Cash" value={money(summary.cash)} />
               <Fact label="Collateral locked" value={money(summary.collateral)} hint="150% of your shorts' value" />
