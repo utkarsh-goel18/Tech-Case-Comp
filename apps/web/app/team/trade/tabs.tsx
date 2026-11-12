@@ -23,7 +23,7 @@ export function TradeTabs() {
             href={t.href}
             aria-current={active ? "page" : undefined}
             className={`rounded-md px-3 py-1.5 text-sm font-medium ${
-              active ? "bg-slate-900 text-white" : "bg-white text-slate-700 ring-1 ring-inset ring-slate-200 hover:bg-slate-50"
+              active ? "border border-[#b7f34b] bg-[#1b2816] text-[#c9fa7e]" : "border border-[#2b4033] bg-[#101813] text-[#9bafa2] hover:border-[#527348] hover:bg-[#17221a]"
             }`}
           >
             {t.label}
