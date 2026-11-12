@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PHASE_LABELS, TRACK_LABELS } from "@msim/engine";
@@ -60,7 +61,7 @@ export default async function TeamLayout({ children }: LayoutProps<"/team">) {
           <header className="primus-header">
             <div className="primus-header-inner flex flex-wrap items-center justify-between gap-x-4 gap-y-2 px-4 py-3">
               <div className="flex min-w-0 flex-wrap items-center gap-2">
-                <Link href="/team" className="primus-brand"><span className="primus-brand-mark">P.</span><span>PRIMUS <span className="font-normal tracking-[.12em] text-[#929292]">/ TEAM PORTAL</span></span></Link>
+                <Link href="/team" className="primus-brand"><Image src="/primus-logo-light.svg" alt="PRIMUS" width={116} height={40} priority className="primus-header-logo" /><span className="font-normal tracking-[.12em] text-[#929292]">/ TEAM PORTAL</span></Link>
                 <span className="font-mono text-xs font-bold tracking-wider text-[#00e676]">{team.code}</span>
                 <Badge tone="slate">{TRACK_LABELS[team.track]}</Badge>
                 <span className="hidden truncate text-sm text-[#c1cbc3] sm:inline">{team.name}</span>
