@@ -234,3 +234,90 @@ body { margin: 0; background: var(--background); color: var(--foreground); font-
 .primus-main .bg-blue-50 { background:#172b3a; color:#c5e6ff; }
 .primus-main .primus-task { color:#e5e5e5; }
 .primus-main .primus-task p,.primus-main .primus-task span { color:inherit; }
+
+
+/* MATRIX NEON FINISH — restrained gradients with high-energy green highlights */
+:root {
+  --matrix-neon: #39ff88;
+  --matrix-lime: #b7ff35;
+  --matrix-deep: #00b85a;
+  --matrix-glow: 0 0 10px rgb(57 255 136 / 32%), 0 0 28px rgb(0 230 118 / 18%);
+}
+.primus-topline {
+  height: 3px;
+  background: linear-gradient(90deg,#00b85a 0%,#39ff88 28%,#c5ff45 52%,#39ff88 76%,#00b85a 100%);
+  box-shadow: 0 0 12px rgb(57 255 136 / 62%), 0 0 30px rgb(0 230 118 / 28%);
+}
+.primus-brand-mark {
+  color:#041009;
+  background:linear-gradient(135deg,#c5ff45 0%,#39ff88 48%,#00d66b 100%);
+  box-shadow:0 0 12px rgb(57 255 136 / 42%),0 0 30px rgb(0 230 118 / 16%);
+}
+.primus-nav a[aria-current="page"] {
+  color:#baffd3;
+  border-image:linear-gradient(90deg,#00c96a,#b7ff35) 1;
+  text-shadow:0 0 12px rgb(57 255 136 / 35%);
+}
+.primus-page-title .accent,.primus-page-title strong,
+.primus-main h1 .accent { color:#39ff88; text-shadow:0 0 18px rgb(57 255 136 / 24%); }
+.primus-button-primary,.finance-terminal .primus-button-primary {
+  color:#031108;
+  background:linear-gradient(110deg,#b7ff35 0%,#39ff88 46%,#00d66b 100%);
+  border:1px solid rgb(185 255 120 / 65%);
+  box-shadow:0 0 12px rgb(57 255 136 / 24%),inset 0 1px 0 rgb(255 255 255 / 38%);
+  transition:transform .16s ease,filter .16s ease,box-shadow .16s ease;
+}
+.primus-button-primary:hover,.finance-terminal .primus-button-primary:hover {
+  background:linear-gradient(110deg,#d0ff67 0%,#61ffa0 46%,#20ed82 100%);
+  box-shadow:0 0 16px rgb(57 255 136 / 48%),0 0 38px rgb(0 230 118 / 22%),inset 0 1px 0 rgb(255 255 255 / 45%);
+  filter:saturate(1.12);
+  transform:translateY(-1px);
+}
+.primus-button-primary:focus-visible,.primus-nav a:focus-visible,
+.finance-watchlist-row:focus-visible {
+  outline:2px solid #b7ff35;
+  outline-offset:3px;
+  box-shadow:var(--matrix-glow);
+}
+.primus-panel {
+  background:linear-gradient(145deg,#242424 0%,#1d1d1d 58%,#191d1b 100%);
+}
+.primus-panel-head {
+  background:linear-gradient(100deg,#2b2b2b 0%,#242424 65%,#202722 100%);
+}
+.primus-stat {
+  background:linear-gradient(145deg,#2b2b2b 0%,#222 72%,#1c241f 100%);
+}
+.finance-terminal-chart,.finance-watchlist,.finance-card {
+  background:linear-gradient(145deg,#242424 0%,#1c1c1c 72%,#18211b 100%);
+  border-color:#3a453d;
+}
+.finance-card-head,.finance-terminal-chart .finance-card-head,
+.finance-watchlist .finance-card-head {
+  background:linear-gradient(100deg,#303030 0%,#252525 68%,#1c2a21 100%);
+}
+.finance-watchlist-row.is-active {
+  background:linear-gradient(90deg,rgb(57 255 136 / 13%),#292929 48%);
+  box-shadow:inset 3px 0 #39ff88,0 0 18px rgb(0 230 118 / 8%);
+}
+.finance-terminal input:focus,.finance-terminal select:focus,
+.finance-terminal textarea:focus {
+  border-color:#39ff88;
+  box-shadow:0 0 0 2px rgb(57 255 136 / 18%),0 0 16px rgb(0 230 118 / 12%);
+}
+.finance-terminal fieldset label:has(input:checked) {
+  border-color:#39ff88;
+  box-shadow:0 0 0 1px #39ff88,0 0 16px rgb(0 230 118 / 16%);
+}
+.finance-terminal fieldset label:has(input[value="BUY"]:checked) {
+  background:linear-gradient(110deg,#b7ff35,#39ff88 55%,#00d66b);
+  color:#031108;
+}
+.primus-login > div {
+  background:linear-gradient(145deg,#242424 0%,#1b1b1b 70%,#142019 100%) !important;
+  border-color:#3a453d !important;
+}
+@media (prefers-reduced-motion:reduce) {
+  .primus-button-primary,.finance-terminal .primus-button-primary { transition:none; }
+  .primus-button-primary:hover,.finance-terminal .primus-button-primary:hover { transform:none; }
+}
