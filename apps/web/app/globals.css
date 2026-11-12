@@ -1,382 +1,130 @@
 @import "tailwindcss";
 
-/*
- * PRIMUS visual system
- * A restrained decision-arena aesthetic: ink, paper, and a single signal-lime accent.
- * Component styling is scoped through reusable classes so the game logic and data contracts stay untouched.
- */
 :root {
-  color-scheme: light;
-  --background: #f3f4f0;
-  --foreground: #151a18;
-  --surface: #ffffff;
-  --surface-muted: #ecefea;
-  --ink: #101815;
-  --ink-soft: #24312b;
-  --muted: #64716a;
-  --line: #d9dfd9;
-  --line-strong: #b8c3bb;
-  --signal: #c9f36a;
-  --signal-ink: #1b2910;
-  --warning: #f2bd58;
-  --danger: #b83d35;
+  color-scheme: dark;
+  --background: #090d0c;
+  --foreground: #e7eee9;
+  --surface: #111816;
+  --surface-raised: #151f1b;
+  --surface-soft: #0d1411;
+  --ink: #f1f6f2;
+  --muted: #8a9b91;
+  --line: #26342d;
+  --signal: #b7f34b;
+  --signal-ink: #10180c;
+  --positive: #42d49a;
+  --negative: #f16e7c;
+  --warning: #f4c45f;
 }
-
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: "Inter", "Segoe UI", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   --font-mono: "IBM Plex Mono", "SFMono-Regular", Consolas, "Liberation Mono", monospace;
 }
-
 * { box-sizing: border-box; }
 html { background: var(--background); scroll-behavior: smooth; }
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-sans);
-  font-feature-settings: "ss01" on, "cv11" on;
-  -webkit-font-smoothing: antialiased;
-}
+body { margin: 0; background: var(--background); color: var(--foreground); font-family: var(--font-sans); font-feature-settings: "ss01" on, "cv11" on; -webkit-font-smoothing: antialiased; }
 ::selection { background: var(--signal); color: var(--signal-ink); }
-:focus-visible { outline: 2px solid #769d35; outline-offset: 3px; }
-
-/* Shared app surfaces */
+:focus-visible { outline: 2px solid var(--signal); outline-offset: 3px; }
 .primus-shell { min-height: 100vh; background: var(--background); }
-.primus-skip-link {
-  position: absolute; z-index: 100; top: -5rem; left: 1rem;
-  padding: .7rem 1rem; background: var(--signal); color: var(--signal-ink);
-  font-size: .85rem; font-weight: 800;
+.primus-skip-link { position:absolute; z-index:100; top:-5rem; left:1rem; padding:.7rem 1rem; background:var(--signal); color:var(--signal-ink); font-weight:800; }
+.primus-skip-link:focus { top:1rem; }
+.primus-topline { height:2px; background:linear-gradient(90deg,#8ef05c,var(--signal) 54%,#41d89a); }
+.primus-header { position:relative; z-index:20; color:var(--foreground); background:rgba(9,14,12,.97); border-bottom:1px solid var(--line); }
+.primus-header-inner { max-width:1600px; margin:0 auto; }
+.primus-brand { display:inline-flex; align-items:center; gap:.65rem; color:#f4faf5; text-decoration:none; font-size:.76rem; font-weight:850; letter-spacing:.19em; }
+.primus-brand-mark { display:inline-grid; width:1.85rem; height:1.85rem; place-items:center; background:var(--signal); color:var(--signal-ink); font:900 .72rem var(--font-mono); box-shadow:0 0 22px rgb(183 243 75 / 13%); }
+.primus-kicker { color:#90a196; font:700 .62rem var(--font-mono); letter-spacing:.15em; text-transform:uppercase; }
+.primus-page-title { color:var(--ink); font-size:clamp(1.55rem,2.7vw,2.3rem); font-weight:760; letter-spacing:-.055em; line-height:1.05; }
+.primus-nav { max-width:1600px; scrollbar-width:thin; scrollbar-color:#516458 transparent; }
+.primus-nav a { color:#96a79d; transition:color .16s ease,border-color .16s ease; }
+.primus-nav a:hover { color:#f2f8f3; }
+.primus-nav a[aria-current="page"] { color:var(--signal); border-color:var(--signal); }
+.primus-main { max-width:1600px; margin:0 auto; padding:1.65rem 1.35rem 4rem; color:var(--foreground); }
+.primus-main-narrow { max-width:1180px; margin:0 auto; padding:1.5rem 1rem 4rem; color:var(--foreground); }
+.primus-panel { min-width:0; border:1px solid var(--line); border-radius:10px; background:linear-gradient(145deg,#141d19,#101714 72%); color:var(--foreground); box-shadow:0 10px 32px rgb(0 0 0 / 16%),inset 0 1px 0 rgb(255 255 255 / 2%); }
+.primus-panel-head { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:.75rem; border-bottom:1px solid var(--line); padding:.9rem 1.1rem; }
+.primus-panel-title { color:#eff6f0; font-size:.9rem; font-weight:760; letter-spacing:-.015em; }
+.primus-panel-body { padding:1.1rem; overflow-wrap:anywhere; color:#c9d5ce; }
+.primus-stat { min-width:0; border:1px solid var(--line); border-radius:8px; background:linear-gradient(145deg,#17221c,#111914); padding:.85rem .95rem; }
+.primus-stat-label { color:#8da095; font:700 .61rem var(--font-mono); letter-spacing:.1em; text-transform:uppercase; }
+.primus-stat-value { margin-top:.3rem; color:#eff8f1; font-size:1.16rem; font-weight:760; font-variant-numeric:tabular-nums; }
+.primus-table { width:100%; border-collapse:collapse; color:#dce7df; }
+.primus-table thead { background:#18241d; }
+.primus-table th { color:#96a99d; font:700 .61rem var(--font-mono); letter-spacing:.09em; text-transform:uppercase; }
+.primus-table tbody tr { border-bottom:1px solid #25342b; transition:background .14s ease; }
+.primus-table tbody tr:hover { background:rgb(183 243 75 / 3%); }
+.primus-table tbody tr:last-child { border-bottom:0; }
+.primus-button-primary { border-radius:6px; background:var(--signal); color:var(--signal-ink); font-weight:780; transition:background .16s ease,transform .16s ease,box-shadow .16s ease; box-shadow:0 0 18px rgb(183 243 75 / 9%); }
+.primus-button-primary:hover { background:#cefa7c; box-shadow:0 0 24px rgb(183 243 75 / 17%); }
+.primus-button-primary:active { transform:translateY(1px); }
+.primus-task { border-left-width:3px; border-left-color:#405448; background:#121c16; }
+.primus-task[data-state="todo"] { border-left-color:var(--signal); background:#172115; }
+.primus-task[data-state="waiting"] { border-left-color:#5abacc; background:#122025; }
+.primus-task[data-state="done"] { border-left-color:#4ed29a; background:#122018; }
+.primus-task[data-state="info"] { border-left-color:#52665a; background:#131b16; }
+.primus-divider { border-color:var(--line); }
+.primus-login { color:#edf7ef; background:radial-gradient(ellipse at 72% 8%,rgb(56 224 137 / 11%),transparent 42%),#080e0b; }
+.primus-login-grid { background-image:linear-gradient(rgb(122 255 166 / 3.5%) 1px,transparent 1px),linear-gradient(90deg,rgb(122 255 166 / 3.5%) 1px,transparent 1px); background-size:44px 44px; }
+.primus-login > div { border-color:#2b4033 !important; background:linear-gradient(145deg,#152019,#0e1511) !important; box-shadow:0 24px 80px rgb(0 0 0 / 48%) !important; }
+.primus-login h1 { color:#eff8f1 !important; }
+.primus-login p { color:#9aafa1 !important; }
+.primus-login input:not([type="checkbox"]):not([type="radio"]),.primus-login select { border-color:#344b3b !important; background:#0b130e !important; color:#eff8f1 !important; }
+.primus-main table:not(.primus-table) { width:100%; border-collapse:collapse; color:#dce7df; }
+.primus-main table:not(.primus-table) thead { background:#18241d; }
+.primus-main table:not(.primus-table) th { color:#96a99d; font:700 .61rem var(--font-mono); letter-spacing:.09em; text-align:left; text-transform:uppercase; }
+.primus-main table:not(.primus-table) th,.primus-main table:not(.primus-table) td { padding:.7rem .8rem; }
+.primus-main table:not(.primus-table) tbody tr { border-bottom:1px solid #25342b; }
+.primus-main input:not([type="checkbox"]):not([type="radio"]):not([type="hidden"]),.primus-main textarea,.primus-main select { border-radius:6px; border:1px solid #344b3b; background:#0b130e; color:#e7eee9; }
+.primus-main input::placeholder,.primus-main textarea::placeholder { color:#708478; }
+.primus-main input:focus-visible,.primus-main textarea:focus-visible,.primus-main select:focus-visible { outline:2px solid var(--signal); outline-offset:2px; border-color:var(--signal); }
+.primus-main a { text-underline-offset:3px; }
+.primus-main button:disabled { cursor:not-allowed; opacity:.48; }
+.primus-header button:focus-visible,.primus-nav a:focus-visible { outline-color:var(--signal); }
+@keyframes msim-ticker { from { transform:translateX(0); } to { transform:translateX(-50%); } }
+.msim-ticker-track { animation:msim-ticker var(--ticker-seconds,60s) linear infinite; }
+.finance-terminal { display:grid; gap:1rem; }
+.finance-overview { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:.7rem; }
+.finance-workbench { display:grid; grid-template-columns:minmax(0,1.35fr) minmax(330px,.8fr); gap:1rem; align-items:start; }
+.finance-card { min-width:0; border:1px solid var(--line); border-radius:10px; overflow:hidden; background:#101714; }
+.finance-card-head { display:flex; align-items:center; justify-content:space-between; gap:.75rem; padding:.9rem 1rem; border-bottom:1px solid var(--line); background:#141e18; }
+.finance-card-title { color:#eef6f0; font-size:.83rem; font-weight:760; }
+.finance-card-body { min-width:0; padding:1rem; }
+.finance-section-label { color:#879a8e; font:700 .61rem var(--font-mono); letter-spacing:.12em; text-transform:uppercase; }
+.finance-quote { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:.6rem; }
+.finance-quote-item { padding:.75rem; border:1px solid #25362b; border-radius:7px; background:#0c1410; }
+.finance-quote-value { margin-top:.22rem; color:#eff8f1; font:700 1.05rem var(--font-mono); font-variant-numeric:tabular-nums; }
+.finance-tabs { display:flex; flex-wrap:wrap; gap:.45rem; }
+.finance-tabs a { padding:.5rem .8rem; border:1px solid #2b4033; border-radius:6px; color:#9bafa2; background:#101813; font-size:.77rem; font-weight:650; text-decoration:none; }
+.finance-tabs a[aria-current="page"] { border-color:var(--signal); color:var(--signal); background:#182216; }
+.finance-market-link { display:flex; align-items:center; justify-content:space-between; gap:.7rem; padding:.75rem .8rem; border-bottom:1px solid #24342a; text-decoration:none; }
+.finance-market-link:last-child { border-bottom:0; }
+.finance-market-link:hover { background:#17221a; }
+.finance-pill { display:inline-flex; align-items:center; gap:.35rem; border:1px solid #2b4033; border-radius:999px; padding:.25rem .55rem; color:#a9baae; font:700 .58rem var(--font-mono); letter-spacing:.05em; text-transform:uppercase; }
+.finance-pill-live::before { content:""; width:6px; height:6px; border-radius:50%; background:var(--positive); box-shadow:0 0 9px var(--positive); }
+.finance-terminal .primus-panel { background:#111916; }
+.finance-terminal .primus-panel-head { background:#141e18; }
+.finance-terminal .primus-stat { background:#101813; }
+.finance-terminal .primus-stat-value { font-family:var(--font-mono); }
+.finance-terminal .primus-button-primary { min-height:42px; padding:.7rem 1rem; }
+.finance-terminal .text-slate-600,.finance-terminal .text-slate-500 { color:#91a397; }
+.finance-terminal .text-slate-900,.finance-terminal .text-slate-800,.finance-terminal .text-slate-700 { color:#e5eee8; }
+.finance-terminal .bg-white,.finance-terminal .bg-slate-50,.finance-terminal .bg-slate-100 { background:#101a15; }
+.finance-terminal .border-slate-100,.finance-terminal .border-slate-200 { border-color:#26372d; }
+.finance-terminal .divide-slate-100 > :not([hidden]) ~ :not([hidden]) { border-color:#26372d; }
+@media (max-width:900px) { .finance-overview { grid-template-columns:repeat(2,minmax(0,1fr)); } .finance-workbench { grid-template-columns:1fr; } }
+@media (max-width:520px) { .finance-overview { grid-template-columns:repeat(2,minmax(0,1fr)); } .finance-quote { grid-template-columns:1fr 1fr; } }
+@media (max-width:640px) {
+  .primus-main { padding:1rem .8rem 3rem; }
+  .primus-main-narrow { padding:1rem .8rem 3rem; }
+  .primus-panel { border-radius:8px; }
+  .primus-panel-body { padding:.85rem; }
+  .primus-panel-head { padding:.8rem .9rem; }
+  .primus-stat { padding:.72rem; }
+  .primus-brand { font-size:.67rem; letter-spacing:.13em; }
 }
-.primus-skip-link:focus { top: 1rem; }
-.primus-topline {
-  height: 4px;
-  background: var(--signal);
-}
-.primus-header {
-  color: #f4f6f1;
-  background: var(--ink);
-  border-bottom: 1px solid #34423a;
-}
-.primus-header-inner { max-width: 1440px; margin: 0 auto; }
-.primus-brand {
-  display: inline-flex; align-items: center; gap: .65rem;
-  color: #f4f6f1; text-decoration: none;
-  font-size: .76rem; font-weight: 800; letter-spacing: .2em;
-}
-.primus-brand-mark {
-  display: inline-grid; width: 1.8rem; height: 1.8rem; place-items: center;
-  background: var(--signal); color: var(--signal-ink);
-  font-family: var(--font-mono); font-size: .72rem; font-weight: 900;
-}
-.primus-kicker {
-  color: var(--muted); font-family: var(--font-mono);
-  font-size: .65rem; font-weight: 700; letter-spacing: .13em; text-transform: uppercase;
-}
-.primus-page-title {
-  color: var(--ink); font-size: clamp(1.5rem, 3vw, 2.2rem);
-  font-weight: 750; letter-spacing: -.055em; line-height: 1.05;
-}
-.primus-nav {
-  scrollbar-width: thin; scrollbar-color: #64716a transparent;
-}
-.primus-nav a { color: #aeb9b1; transition: color .16s ease, border-color .16s ease; }
-.primus-nav a:hover { color: #fff; }
-.primus-nav a[aria-current="page"] { color: var(--signal); border-color: var(--signal); }
-.primus-main { max-width: 1440px; margin: 0 auto; padding: 1.75rem 1.25rem 4rem; }
-.primus-main-narrow { max-width: 1120px; margin: 0 auto; padding: 1.5rem 1rem 4rem; }
-.primus-panel {
-  min-width: 0;
-  border: 1px solid var(--line); border-radius: 8px;
-  background: var(--surface); color: var(--foreground); box-shadow: 0 1px 2px rgb(16 24 21 / 3%);
-}
-.primus-panel-head {
-  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
-  gap: .75rem; border-bottom: 1px solid var(--line);
-  padding: .9rem 1.1rem;
-}
-.primus-panel-title { color: var(--ink); font-size: .9rem; font-weight: 750; letter-spacing: -.015em; }
-.primus-panel-body { padding: 1.1rem; overflow-wrap: anywhere; }
-.primus-panel-body > :first-child { min-width: 0; }
-.primus-task { border-left-width: 3px; border-left-color: #b8c3bb; }
-.primus-task[data-state="todo"] { border-left-color: #c9f36a; background: #fbfdf7; }
-.primus-task[data-state="waiting"] { border-left-color: #8da8b4; }
-.primus-task[data-state="done"] { border-left-color: #9bb77a; }
-.primus-task[data-state="info"] { border-left-color: #b8c3bb; }
-.primus-stat {
-  border: 1px solid var(--line); border-radius: 7px;
-  background: #f7f8f5; padding: .8rem .9rem;
-}
-.primus-stat-label {
-  color: var(--muted); font-family: var(--font-mono); font-size: .62rem;
-  font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
-}
-.primus-stat-value { margin-top: .25rem; color: var(--ink); font-size: 1.15rem; font-weight: 750; font-variant-numeric: tabular-nums; }
-.primus-table { border-collapse: collapse; width: 100%; }
-.primus-table thead { background: #f1f4ef; }
-.primus-table th {
-  color: #5e6b63; font-family: var(--font-mono); font-size: .62rem;
-  font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
-}
-.primus-table tbody tr { border-bottom: 1px solid #e8ece7; }
-.primus-table tbody tr:last-child { border-bottom: 0; }
-.primus-button-primary {
-  border-radius: 5px; background: var(--signal); color: var(--signal-ink);
-  font-weight: 750; transition: background .16s ease, transform .16s ease;
-}
-.primus-button-primary:hover { background: #d8fb91; }
-.primus-button-primary:active { transform: translateY(1px); }
-.primus-login {
-  color: #f4f6f1;
-  background: radial-gradient(ellipse at 75% 0%, #26372d 0%, transparent 42%), var(--ink);
-}
-.primus-login-grid {
-  background-image: linear-gradient(rgb(255 255 255 / 3%) 1px, transparent 1px), linear-gradient(90deg, rgb(255 255 255 / 3%) 1px, transparent 1px);
-  background-size: 48px 48px;
-}
-.primus-divider { border-color: var(--line); }
-
-@media (max-width: 640px) {
-  .primus-main { padding: 1.1rem .85rem 3rem; }
-  .primus-main-narrow { padding: 1rem .85rem 3rem; }
-  .primus-panel-body { padding: .9rem; }
-  .primus-panel-head { padding: .8rem .9rem; }
-  .primus-brand { font-size: .68rem; letter-spacing: .14em; }
-}
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
-}
-
-
-/* Route-level content defaults: bring legacy pages onto the same surface system without changing their behaviour. */
-.primus-main table:not(.primus-table) { border-collapse: collapse; width: 100%; }
-.primus-main table:not(.primus-table) thead { background: #f1f4ef; }
-.primus-main table:not(.primus-table) th {
-  color: #5e6b63; font-family: var(--font-mono); font-size: .62rem;
-  font-weight: 700; letter-spacing: .08em; text-align: left; text-transform: uppercase;
-}
-.primus-main table:not(.primus-table) th,
-.primus-main table:not(.primus-table) td { padding: .7rem .8rem; }
-.primus-main table:not(.primus-table) tbody tr { border-bottom: 1px solid #e8ece7; }
-.primus-main input:not([type="checkbox"]):not([type="radio"]):not([type="hidden"]),
-.primus-main textarea,
-.primus-main select {
-  border-radius: 4px; border-color: var(--line-strong); background-color: #fff; color: var(--foreground);
-}
-.primus-main input:focus-visible,
-.primus-main textarea:focus-visible,
-.primus-main select:focus-visible {
-  outline: 2px solid #769d35; outline-offset: 2px; border-color: #769d35;
-}
-.primus-main a { text-underline-offset: 3px; }
-.primus-main button:disabled { cursor: not-allowed; opacity: .55; }
-.primus-header button:focus-visible,
-.primus-nav a:focus-visible { outline-color: var(--signal); }
-
-/* The projector's news ticker loops without a gap. */
-@keyframes msim-ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-.msim-ticker-track { animation: msim-ticker var(--ticker-seconds, 60s) linear infinite; }
-@media (prefers-reduced-motion: reduce) { .msim-ticker-track { animation: none; } }
-
-
-/* ============================================================
-   PRIMUS MATRIX TERMINAL — Olymptrade-inspired trading UX
-   Original visual language; no copied assets or brand elements.
-   ============================================================ */
-:root {
-  color-scheme: dark;
-  --background: #070b0a;
-  --foreground: #e5eee8;
-  --surface: #0d1411;
-  --surface-muted: #111c17;
-  --ink: #e8f4ec;
-  --ink-soft: #b6c9bc;
-  --muted: #82958a;
-  --line: #1c3026;
-  --line-strong: #2a4737;
-  --signal: #b6ff45;
-  --signal-ink: #101a0b;
-  --warning: #ffc857;
-  --danger: #ff657a;
-}
-html, body { background: var(--background); color: var(--foreground); }
-body {
-  background-image:
-    radial-gradient(ellipse at 50% -18%, rgb(61 255 132 / 7%), transparent 42%),
-    linear-gradient(180deg, #080e0b 0%, #070b0a 42%, #090f0c 100%);
-}
-::selection { background: #b6ff45; color: #071009; }
-:focus-visible { outline-color: #b6ff45; }
-.primus-shell { background: transparent; }
-.primus-topline { height: 2px; background: linear-gradient(90deg, #7dff47, #caff57 50%, #36d98b); }
-.primus-header {
-  color: #eaf5ed;
-  background: rgb(8 14 11 / 94%);
-  border-bottom: 1px solid #20392b;
-  box-shadow: 0 10px 30px rgb(0 0 0 / 18%);
-  backdrop-filter: blur(16px);
-}
-.primus-brand { color: #f0fff4; }
-.primus-brand-mark {
-  background: #b6ff45; color: #0a140b;
-  box-shadow: 0 0 22px rgb(182 255 69 / 20%);
-}
-.primus-kicker { color: #8da797; }
-.primus-page-title { color: #f0fff4; }
-.primus-nav a { color: #91a69a; }
-.primus-nav a:hover { color: #eaffef; }
-.primus-nav a[aria-current="page"] {
-  color: #c5ff70; border-color: #b6ff45;
-  text-shadow: 0 0 16px rgb(182 255 69 / 22%);
-}
-.primus-main, .primus-main-narrow { color: #dce9e0; }
-.primus-panel {
-  border: 1px solid #1d3428;
-  border-radius: 10px;
-  background: linear-gradient(145deg, rgb(16 27 21 / 98%), rgb(10 17 13 / 98%));
-  color: #e3eee7;
-  box-shadow: 0 8px 28px rgb(0 0 0 / 18%), inset 0 1px 0 rgb(255 255 255 / 2%);
-}
-.primus-panel-head { border-bottom: 1px solid #20372a; }
-.primus-panel-title { color: #eaf6ed; }
-.primus-panel-body { color: #c6d5cb; }
-.primus-task { border-left-color: #385244; }
-.primus-task[data-state="todo"] { border-left-color: #b6ff45; background: #111d13; }
-.primus-task[data-state="waiting"] { border-left-color: #54b6c8; background: #0e1b1d; }
-.primus-task[data-state="done"] { border-left-color: #5ed69a; background: #0d1c16; }
-.primus-task[data-state="info"] { border-left-color: #526c5c; background: #101914; }
-.primus-stat { border: 1px solid #20372a; background: linear-gradient(145deg, #111d16, #0c1510); }
-.primus-stat-label { color: #8ba294; }
-.primus-stat-value { color: #edfff1; }
-.primus-table { color: #d8e7dd; }
-.primus-table thead { background: #142219; }
-.primus-table th { color: #91a99a; }
-.primus-table tbody tr { border-bottom-color: #1b3024; }
-.primus-button-primary {
-  border-radius: 6px; background: #b6ff45; color: #0b1609;
-  box-shadow: 0 0 20px rgb(182 255 69 / 10%);
-}
-.primus-button-primary:hover { background: #ccff78; box-shadow: 0 0 24px rgb(182 255 69 / 20%); }
-.primus-login {
-  color: #eff9f1;
-  background:
-    radial-gradient(ellipse at 72% 10%, rgb(60 255 130 / 12%), transparent 42%),
-    radial-gradient(ellipse at 10% 90%, rgb(182 255 69 / 7%), transparent 35%),
-    #070d0a;
-}
-.primus-login-grid {
-  background-image:
-    linear-gradient(rgb(117 255 160 / 4%) 1px, transparent 1px),
-    linear-gradient(90deg, rgb(117 255 160 / 4%) 1px, transparent 1px);
-  background-size: 44px 44px;
-}
-.primus-divider { border-color: #20372a; }
-
-/* Route-level defaults: ensure legacy Tailwind pages inherit the terminal palette. */
-.primus-main table:not(.primus-table) { color: #d8e7dd; }
-.primus-main table:not(.primus-table) thead { background: #142219; }
-.primus-main table:not(.primus-table) th { color: #91a99a; }
-.primus-main table:not(.primus-table) tbody tr { border-bottom-color: #1b3024; }
-.primus-main input:not([type="checkbox"]):not([type="radio"]):not([type="hidden"]),
-.primus-main textarea, .primus-main select {
-  border-color: #2b4737; background-color: #0b1510; color: #e4f0e7;
-}
-.primus-main input::placeholder, .primus-main textarea::placeholder { color: #70877a; }
-.primus-main input:focus-visible, .primus-main textarea:focus-visible, .primus-main select:focus-visible {
-  outline-color: #b6ff45; border-color: #8bcf45;
-}
-.primus-main a { color: #b9f879; }
-.primus-main button:disabled { opacity: .42; }
-.primus-header button:focus-visible, .primus-nav a:focus-visible { outline-color: #b6ff45; }
-
-/* Dark login card and form controls. */
-.primus-login > div {
-  border-color: #294332 !important;
-  background: linear-gradient(145deg, #111c15, #0b120e) !important;
-  box-shadow: 0 24px 80px rgb(0 0 0 / 48%), 0 0 60px rgb(66 255 132 / 5%) !important;
-}
-.primus-login h1 { color: #edfff1 !important; }
-.primus-login p { color: #9db2a4 !important; }
-.primus-login input:not([type="checkbox"]):not([type="radio"]),
-.primus-login select {
-  border-color: #2b4737 !important; background: #09120d !important; color: #eaffef !important;
-}
-.primus-login input::placeholder { color: #6e8576 !important; }
-
-@media (max-width: 640px) {
-  .primus-panel { border-radius: 8px; }
-  .primus-stat { padding: .7rem; }
-}
-
-
-/* ============================================================
-   MATRIX TERMINAL — dark trading workspace refinement
-   Applies to existing routes/components without changing data
-   contracts, actions, or event logic.
-   ============================================================ */
-.primus-shell { color: var(--foreground); }
-.primus-main { color: var(--foreground); }
-.primus-page-title { color: var(--ink); }
-.primus-kicker { color: var(--muted); }
-.primus-panel {
-  background: linear-gradient(145deg, #101a15 0%, #0c1310 100%);
-  border-color: var(--line);
-  box-shadow: 0 12px 34px rgb(0 0 0 / 18%), inset 0 1px 0 rgb(255 255 255 / 2%);
-}
-.primus-panel-head { border-color: var(--line); }
-.primus-panel-title { color: var(--ink); }
-.primus-stat {
-  background: linear-gradient(145deg, #142019, #0e1712);
-  border-color: var(--line);
-}
-.primus-stat-label { color: #82998b; }
-.primus-stat-value { color: #e8f4ec; }
-.primus-table thead { background: #142019; }
-.primus-table th { color: #8ca394; }
-.primus-table tbody tr { border-color: #1b2c22; }
-.primus-table tbody tr:hover { background: rgb(182 255 69 / 4%); }
-.primus-button-primary { box-shadow: 0 0 18px rgb(182 255 69 / 9%); }
-.primus-header { background: rgb(6 11 8 / 96%); backdrop-filter: blur(16px); }
-.primus-topline { background: linear-gradient(90deg, #b6ff45, #62d98c 55%, #b6ff45); }
-.primus-nav { border-color: #1c3026; }
-.primus-main a { color: #c5ef91; }
-.primus-main a:hover { color: #d9ffad; }
-.primus-main a:focus-visible { outline-color: var(--signal); }
-.primus-main input:not([type="checkbox"]):not([type="radio"]):not([type="hidden"]),
-.primus-main textarea, .primus-main select {
-  background: #0a110d; color: #e5eee8; border-color: #2a4737;
-}
-.primus-main input::placeholder, .primus-main textarea::placeholder { color: #718579; }
-.primus-main table:not(.primus-table) thead { background: #142019; }
-.primus-main table:not(.primus-table) th { color: #8ca394; }
-.primus-main table:not(.primus-table) tbody tr { border-color: #1b2c22; }
-
-/* Translate legacy utility colours into the Matrix palette inside the app shell. */
-.primus-main .text-slate-900, .primus-main .text-slate-800,
-.primus-main .text-slate-700, .primus-main .text-gray-900 { color: #e5eee8 !important; }
-.primus-main .text-slate-600, .primus-main .text-slate-500,
-.primus-main .text-gray-600, .primus-main .text-gray-500 { color: #91a397 !important; }
-.primus-main .text-emerald-700, .primus-main .text-green-700 { color: #b6ff85 !important; }
-.primus-main .text-red-700, .primus-main .text-rose-700 { color: #ff8290 !important; }
-.primus-main .bg-white, .primus-main .bg-slate-50, .primus-main .bg-slate-100,
-.primus-main .bg-gray-50, .primus-main .bg-gray-100 { background-color: #101a15 !important; }
-.primus-main .border-slate-100, .primus-main .border-slate-200,
-.primus-main .border-slate-300, .primus-main .border-gray-200 { border-color: #20372a !important; }
-.primus-main .divide-slate-100 > :not([hidden]) ~ :not([hidden]) { border-color: #20372a !important; }
-.primus-main .ring-slate-200, .primus-main .ring-slate-300 { --tw-ring-color: #2a4737 !important; }
-.primus-main .hover\\:bg-slate-50:hover, .primus-main .hover\\:bg-white:hover { background-color: #17251b !important; }
-
-/* Status chips remain legible on dark surfaces. */
-.primus-main .bg-emerald-100, .primus-main .bg-green-100 { background: #183522 !important; }
-.primus-main .text-emerald-800, .primus-main .text-green-800 { color: #b6ff85 !important; }
-.primus-main .bg-amber-100, .primus-main .bg-yellow-100 { background: #382b12 !important; }
-.primus-main .text-amber-800, .primus-main .text-yellow-800 { color: #ffd37a !important; }
-.primus-main .bg-red-100, .primus-main .bg-rose-100 { background: #3b1d23 !important; }
-.primus-main .text-red-800, .primus-main .text-rose-800 { color: #ff9aa4 !important; }
-.primus-main .bg-blue-100 { background: #172c39 !important; }
-.primus-main .text-blue-800 { color: #9edcff !important; }
-
-@media (max-width: 640px) {
-  .primus-header-inner { align-items: flex-start; }
-  .primus-main { overflow-x: clip; }
+@media (prefers-reduced-motion:reduce) {
+  *,*::before,*::after { scroll-behavior:auto !important; animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; }
+  .msim-ticker-track { animation:none; }
 }
