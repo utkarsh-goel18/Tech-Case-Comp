@@ -6,7 +6,7 @@ import { safeNext } from "@/lib/auth/routes";
 import { LoginForm } from "./login-form";
 import { MatrixRain } from "./matrix-rain";
 
-export const metadata: Metadata = { title: "Sign in · PRIMUS" };
+export const metadata: Metadata = { title: "Enter PRIMUS · Market Simulation" };
 
 export default async function LoginPage({ searchParams }: PageProps<"/login">) {
   const { next } = await searchParams;
@@ -15,54 +15,44 @@ export default async function LoginPage({ searchParams }: PageProps<"/login">) {
   if (viewer) redirect(safeNext(nextPath, viewer.role));
 
   return (
-    <main className="primus-login primus-login-grid matrix-login min-h-dvh">
+    <main className="matrix-cinematic-login">
       <MatrixRain />
-      <div className="matrix-scanlines" aria-hidden="true" />
-      <div className="matrix-intro" aria-hidden="true">
-        <div className="matrix-intro-flash" />
-        <Image src="/primus-logo-light.svg" alt="" width={760} height={275} priority className="matrix-intro-logo" />
-        <span className="matrix-intro-caption">INITIALISING PRIMUS NETWORK</span>
-      </div>
-      <div className="matrix-login-shell">
-        <div className="matrix-login-topline">
-          <span className="matrix-live-dot" /> PRIMUS NETWORK <span className="matrix-topline-divider">/</span> SECURE ACCESS
-          <span className="matrix-topline-right">SYSTEM ONLINE · 2026</span>
+      <div className="matrix-cinematic-vignette" aria-hidden="true" />
+      <div className="matrix-cinematic-scanlines" aria-hidden="true" />
+
+      <section className="matrix-logo-intro" aria-hidden="true">
+        <div className="matrix-intro-sweep" />
+        <div className="matrix-intro-noise" />
+        <Image
+          src="/primus-logo-light.svg"
+          alt=""
+          width={760}
+          height={275}
+          priority
+          className="matrix-intro-wordmark"
+        />
+        <p className="matrix-intro-status">PRIMUS NETWORK <span>//</span> INITIALISING</p>
+      </section>
+
+      <section className="matrix-login-stage" aria-label="PRIMUS sign in">
+        <div className="matrix-login-card">
+          <div className="matrix-card-topline">
+            <span><i /> SECURE ACCESS NODE</span>
+            <span>PRIMUS · 2026</span>
+          </div>
+          <div className="matrix-card-heading">
+            <p className="matrix-terminal-prompt">&gt; wake up, trader<span className="matrix-cursor">_</span></p>
+            <h1>Enter the simulation<span>.</span></h1>
+            <p>Sign in with the credentials issued on your team card.</p>
+          </div>
+          <LoginForm next={nextPath} />
+          <div className="matrix-card-footer">
+            <span>ENCRYPTED CONNECTION</span>
+            <span>CONTACT ORGANISER FOR SUPPORT</span>
+          </div>
         </div>
-        <section className="matrix-login-layout">
-          <div className="matrix-login-brand">
-            <p className="matrix-eyebrow"><span /> THE GAME IS LIVE</p>
-            <div className="matrix-logo-stage" aria-label="PRIMUS">
-              <Image src="/primus-logo-light.svg" alt="PRIMUS" width={520} height={190} priority className="matrix-logo matrix-logo-main" />
-              <Image src="/primus-logo-light.svg" alt="" width={520} height={190} aria-hidden="true" className="matrix-logo matrix-logo-glitch matrix-logo-glitch-a" />
-              <Image src="/primus-logo-light.svg" alt="" width={520} height={190} aria-hidden="true" className="matrix-logo matrix-logo-glitch matrix-logo-glitch-b" />
-            </div>
-            <h1 className="matrix-hero-title">WHERE EVERY<br /><span>DECISION CONNECTS.</span></h1>
-            <p className="matrix-hero-copy">Three tracks. One market. Every move changes the game.</p>
-            <div className="matrix-system-readout">
-              <span><i /> MARKET SIMULATION</span>
-              <span>PRIMUS // 26</span>
-            </div>
-          </div>
-          <div className="matrix-auth-wrap">
-            <div className="matrix-auth-card">
-              <div className="matrix-auth-card-top">
-                <span className="matrix-auth-index">01 / AUTHENTICATION</span>
-                <span className="matrix-lock"><i /> ENCRYPTED</span>
-              </div>
-              <div className="matrix-terminal-prompt">&gt; wake up, trader<span className="matrix-cursor">_</span></div>
-              <h2>Enter the simulation<span className="matrix-title-period">.</span></h2>
-              <p className="matrix-auth-description">Sign in with the credentials issued on your team card.</p>
-              <LoginForm next={nextPath} />
-              <div className="matrix-auth-foot"><span>ACCESS RESTRICTED</span><span>AUTH NODE 01</span></div>
-            </div>
-            <p className="matrix-help-line">HAVING TROUBLE? CONTACT YOUR EVENT ORGANISER.</p>
-          </div>
-        </section>
-        <footer className="matrix-login-footer">
-          <span>THAPAR VENTURE CLUB <b>×</b> SATURNALIA</span>
-          <span>ALL SYSTEMS NOMINAL <i /></span>
-        </footer>
-      </div>
+        <p className="matrix-stage-caption"><i /> THE GAME IS LIVE <span>·</span> EVERY DECISION CONNECTS</p>
+      </section>
     </main>
   );
 }
