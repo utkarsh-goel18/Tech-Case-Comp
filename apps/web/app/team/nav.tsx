@@ -20,7 +20,7 @@ export function TeamNav({ track }: { track: Track }) {
     if (t.left < r.left || t.right > r.right) row.scrollLeft += t.left - r.left - (r.width - t.width) / 2;
   }, [pathname]);
   return (
-    <nav ref={nav} className="primus-nav mx-auto flex max-w-[1440px] gap-1 overflow-x-auto border-t border-[#34423a] px-4" aria-label="Sections">
+    <nav ref={nav} className="primus-nav mx-auto flex max-w-[1440px] gap-1 overflow-x-auto border-t border-[#303030] px-4" aria-label="Sections">
       {TEAM_SECTIONS[track].map((s) => {
         const href = `/team${s.path}`;
         const active = s.path === "" ? pathname === "/team" : pathname.startsWith(href);
@@ -30,7 +30,7 @@ export function TeamNav({ track }: { track: Track }) {
             href={href}
             aria-current={active ? "page" : undefined}
             className={`whitespace-nowrap border-b-2 px-3 py-2 text-sm font-medium ${
-              active ? "border-[#b6ff45] text-[#b6ff45]" : "border-transparent text-[#91a397] hover:text-[#e5eee8]"
+              active ? "border-[#00e676] text-[#00e676]" : "border-transparent text-[#999] hover:text-white"
             }`}
           >
             {s.label}
