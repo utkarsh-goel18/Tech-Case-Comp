@@ -13,7 +13,7 @@ export function LoginForm({ next }: { next?: string }) {
       onClick={() => setMode(m)}
       aria-pressed={mode === m}
       className={`flex-1 rounded-md px-3 py-2 text-sm font-semibold ${
-        mode === m ? "bg-white text-[#101815] shadow-sm" : "text-[#64716a] hover:text-[#101815]"
+        mode === m ? "matrix-login-tab-active" : "matrix-login-tab-idle"
       }`}
     >
       {label}
@@ -22,7 +22,7 @@ export function LoginForm({ next }: { next?: string }) {
 
   return (
     <form action={action} className="space-y-4">
-      <div className="flex gap-1 rounded-sm bg-[#e7ebe5] p-1">
+      <div className="matrix-login-tabs">
         {tab("team", "Team")}
         {tab("staff", "Organiser")}
       </div>
@@ -30,7 +30,7 @@ export function LoginForm({ next }: { next?: string }) {
       {next ? <input type="hidden" name="next" value={next} /> : null}
 
       {mode === "team" ? (
-        <label className="block">
+        <label className="matrix-login-field block">
           <span className="text-sm font-medium text-slate-700">Team code</span>
           <input
             name="code"
@@ -39,7 +39,7 @@ export function LoginForm({ next }: { next?: string }) {
             autoComplete="username"
             autoCapitalize="characters"
             placeholder="P07"
-            className="mt-1 block w-full rounded-sm border border-[#b8c3bb] bg-white px-3 py-3 font-mono text-lg uppercase tracking-wider text-[#151a18] placeholder:text-[#89948d] focus:border-[#769d35] focus:outline-none focus:ring-2 focus:ring-[#c9f36a]/40"
+            className="matrix-login-input mt-1 block w-full"
           />
         </label>
       ) : (
@@ -51,7 +51,7 @@ export function LoginForm({ next }: { next?: string }) {
             defaultValue={mode === "staff" ? state.login : undefined}
             required
             autoComplete="username"
-            className="mt-1 block w-full rounded-sm border border-[#b8c3bb] bg-white px-3 py-3 text-lg text-[#151a18] focus:border-[#769d35] focus:outline-none focus:ring-2 focus:ring-[#c9f36a]/40"
+            className="matrix-login-input mt-1 block w-full"
           />
         </label>
       )}
@@ -64,12 +64,12 @@ export function LoginForm({ next }: { next?: string }) {
           required
           autoComplete="current-password"
           placeholder={mode === "team" ? "XXXX-XXXX-XXXX" : undefined}
-          className="mt-1 block w-full rounded-sm border border-[#b8c3bb] bg-white px-3 py-3 font-mono text-lg tracking-wider text-[#151a18] focus:border-[#769d35] focus:outline-none focus:ring-2 focus:ring-[#c9f36a]/40"
+          className="matrix-login-input mt-1 block w-full"
         />
       </label>
 
       {state.error ? (
-        <p role="alert" className="rounded-md bg-red-50 px-3 py-2 text-sm text-red-800">
+        <p role="alert" className="matrix-login-error rounded-md px-3 py-2 text-sm">
           {state.error}
         </p>
       ) : null}
@@ -77,7 +77,7 @@ export function LoginForm({ next }: { next?: string }) {
       <button
         type="submit"
         disabled={pending}
-        className="primus-button-primary w-full rounded-sm px-4 py-3 text-base disabled:cursor-not-allowed disabled:opacity-60"
+        className="matrix-login-submit primus-button-primary w-full px-4 py-3 text-base disabled:cursor-not-allowed disabled:opacity-60"
       >
         {pending ? "Signing in…" : "Sign in"}
       </button>
