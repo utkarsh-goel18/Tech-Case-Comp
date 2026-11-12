@@ -330,3 +330,117 @@ body { margin: 0; background: var(--background); color: var(--foreground); font-
   .primus-header-logo { width:88px; }
   .primus-brand { gap:.55rem; }
 }
+
+
+/* PRIMUS MATRIX LOGIN — immersive branded entry */
+.matrix-login {
+  position:relative; isolation:isolate; display:flex; align-items:center; justify-content:center;
+  overflow:hidden; padding:clamp(1.1rem,3vw,3rem); background:#020704 !important;
+}
+.matrix-rain-canvas,.matrix-scanlines { position:fixed; inset:0; width:100%; height:100%; pointer-events:none; }
+.matrix-rain-canvas { z-index:-2; opacity:.8; }
+.matrix-scanlines {
+  z-index:-1; opacity:.25;
+  background:repeating-linear-gradient(to bottom,transparent 0,transparent 3px,rgba(0,0,0,.42) 4px,rgba(0,0,0,.42) 5px);
+}
+.matrix-login::before {
+  content:""; position:fixed; inset:0; z-index:-1; pointer-events:none;
+  background:radial-gradient(ellipse at 22% 48%,rgba(0,190,83,.12),transparent 38%),
+             radial-gradient(ellipse at 82% 52%,rgba(57,255,136,.08),transparent 35%),
+             linear-gradient(90deg,rgba(0,0,0,.28),transparent 40%,rgba(0,0,0,.3));
+}
+.matrix-login-shell { width:min(1320px,100%); position:relative; }
+.matrix-login-topline,.matrix-login-footer {
+  display:flex; align-items:center; gap:.7rem; color:#75a98a; font:700 .62rem var(--font-mono);
+  letter-spacing:.15em; text-transform:uppercase;
+}
+.matrix-login-topline { min-height:44px; border-top:1px solid rgba(57,255,136,.52); border-bottom:1px solid rgba(57,255,136,.2); }
+.matrix-topline-divider { color:#286a43; }
+.matrix-topline-right { margin-left:auto; color:#648071; }
+.matrix-live-dot,.matrix-system-readout i,.matrix-lock i,.matrix-eyebrow span,.matrix-login-footer i {
+  display:inline-block; width:7px; height:7px; border-radius:50%; background:#39ff88;
+  box-shadow:0 0 9px #39ff88,0 0 20px rgba(57,255,136,.65);
+}
+.matrix-login-layout {
+  display:grid; grid-template-columns:minmax(0,1.15fr) minmax(360px,.85fr);
+  align-items:center; gap:clamp(2rem,7vw,7rem); min-height:min(760px,calc(100dvh - 110px));
+  padding:clamp(2.5rem,6vw,5.5rem) clamp(.2rem,3vw,2.5rem);
+}
+.matrix-login-brand { min-width:0; }
+.matrix-eyebrow { display:flex; align-items:center; gap:.7rem; margin:0 0 1.5rem; color:#7fbc96; font:700 .68rem var(--font-mono); letter-spacing:.2em; }
+.matrix-logo-stage { position:relative; width:min(100%,590px); margin:0 0 2rem; padding:.5rem 0; }
+.matrix-logo { display:block; width:100%; height:auto; object-fit:contain; }
+.matrix-logo-main { position:relative; z-index:1; filter:drop-shadow(0 0 9px rgba(57,255,136,.26)) drop-shadow(0 0 30px rgba(0,230,118,.14)); animation:matrix-logo-breathe 5s ease-in-out infinite; }
+.matrix-logo-glitch { position:absolute; inset:0; opacity:0; pointer-events:none; }
+.matrix-logo-glitch-a { filter:brightness(0) saturate(100%) invert(55%) sepia(96%) saturate(1100%) hue-rotate(92deg); animation:matrix-glitch-a 6s steps(1,end) infinite; }
+.matrix-logo-glitch-b { filter:brightness(0) saturate(100%) invert(76%) sepia(70%) saturate(600%) hue-rotate(53deg); animation:matrix-glitch-b 6s steps(1,end) infinite; }
+.matrix-hero-title { margin:0; color:#effff3; font-size:clamp(1.8rem,3.3vw,3.25rem); line-height:1.04; letter-spacing:-.065em; font-weight:850; }
+.matrix-hero-title span { color:#39ff88; text-shadow:0 0 22px rgba(57,255,136,.26); }
+.matrix-hero-copy { margin:1rem 0 2.3rem; max-width:470px; color:#91a99a; font-size:1rem; line-height:1.7; }
+.matrix-system-readout { display:flex; flex-wrap:wrap; gap:2rem; border-top:1px solid rgba(57,255,136,.2); padding-top:1rem; color:#6b987a; font:700 .62rem var(--font-mono); letter-spacing:.12em; }
+.matrix-system-readout span:first-child { display:flex; align-items:center; gap:.65rem; }
+.matrix-system-readout i { width:6px; height:6px; }
+.matrix-auth-wrap { width:100%; max-width:470px; justify-self:end; }
+.matrix-auth-card {
+  position:relative; overflow:hidden; border:1px solid rgba(57,255,136,.42); border-radius:5px;
+  background:linear-gradient(145deg,rgba(8,20,12,.97),rgba(3,10,6,.98) 58%,rgba(7,22,12,.98));
+  box-shadow:0 0 0 1px rgba(57,255,136,.07),0 0 32px rgba(0,230,118,.13),0 24px 90px rgba(0,0,0,.56);
+  padding:clamp(1.35rem,3vw,2.2rem);
+}
+.matrix-auth-card::before { content:""; position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg,#00b85a,#39ff88,#c5ff45,#00b85a); box-shadow:0 0 18px rgba(57,255,136,.6); }
+.matrix-auth-card-top { display:flex; align-items:center; justify-content:space-between; gap:1rem; margin-bottom:2rem; color:#648b71; font:700 .59rem var(--font-mono); letter-spacing:.13em; }
+.matrix-lock { display:flex; align-items:center; gap:.5rem; color:#7ed99b; }
+.matrix-lock i { width:6px; height:6px; }
+.matrix-terminal-prompt { margin-bottom:.55rem; color:#39ff88; font:600 .76rem var(--font-mono); letter-spacing:.03em; }
+.matrix-cursor { display:inline-block; margin-left:3px; animation:matrix-cursor 1s steps(2,end) infinite; }
+.matrix-auth-card h2 { margin:0; color:#eaffef; font-size:clamp(1.55rem,3vw,2.05rem); font-weight:800; letter-spacing:-.055em; }
+.matrix-title-period { color:#39ff88; text-shadow:0 0 16px rgba(57,255,136,.6); }
+.matrix-auth-description { margin:.65rem 0 1.7rem; color:#91a99a; font-size:.9rem; line-height:1.6; }
+.matrix-login-tabs { display:flex; gap:4px; padding:4px; margin-bottom:1.3rem; border:1px solid #244d32; border-radius:4px; background:#030905; }
+.matrix-login-tabs button { min-height:42px; border-radius:2px; font:700 .76rem var(--font-mono); letter-spacing:.03em; transition:background .16s ease,color .16s ease,box-shadow .16s ease; }
+.matrix-login-tab-active { background:linear-gradient(110deg,#b7ff35,#39ff88 58%,#00d66b); color:#031108; box-shadow:0 0 16px rgba(57,255,136,.23); }
+.matrix-login-tab-idle { color:#85a991; }
+.matrix-login-tab-idle:hover { color:#d8ffe4; background:rgba(57,255,136,.08); }
+.matrix-login-field { margin-top:1.05rem; }
+.matrix-login-field > span { display:block; color:#8be7a8; font:700 .72rem var(--font-mono); letter-spacing:.04em; }
+.matrix-login-input {
+  min-height:52px; padding:.8rem .9rem; border:1px solid #236b3c !important; border-radius:3px !important;
+  background:rgba(0,0,0,.62) !important; color:#baffd0 !important; font:500 1rem var(--font-mono) !important;
+  letter-spacing:.045em; outline:none; transition:border-color .18s ease,box-shadow .18s ease,background .18s ease;
+}
+.matrix-login-input::placeholder { color:#426b50 !important; }
+.matrix-login-input:focus { border-color:#39ff88 !important; background:#020b05 !important; box-shadow:0 0 0 1px rgba(57,255,136,.3),0 0 20px rgba(0,230,118,.13) !important; }
+.matrix-login-submit { min-height:54px; margin-top:.2rem; border-radius:3px !important; font:800 .85rem var(--font-mono); letter-spacing:.08em; text-transform:uppercase; }
+.matrix-login-error { border:1px solid #77333a; background:#271216; color:#ffabb5; }
+.matrix-auth-foot { display:flex; justify-content:space-between; gap:1rem; border-top:1px solid rgba(57,255,136,.15); margin-top:1.5rem; padding-top:.9rem; color:#52745d; font:700 .56rem var(--font-mono); letter-spacing:.13em; }
+.matrix-help-line { margin:.9rem 0 0; text-align:center; color:#567363; font:600 .55rem var(--font-mono); letter-spacing:.11em; }
+.matrix-login-footer { justify-content:space-between; min-height:48px; border-top:1px solid rgba(57,255,136,.19); color:#547360; }
+.matrix-login-footer b { color:#39ff88; padding:0 .3rem; }
+.matrix-login-footer i { width:6px; height:6px; margin-left:.35rem; }
+@keyframes matrix-cursor { 0%,49% { opacity:1; } 50%,100% { opacity:0; } }
+@keyframes matrix-logo-breathe { 0%,100% { filter:drop-shadow(0 0 8px rgba(57,255,136,.2)); } 50% { filter:drop-shadow(0 0 16px rgba(57,255,136,.45)) drop-shadow(0 0 34px rgba(0,230,118,.18)); } }
+@keyframes matrix-glitch-a { 0%,91%,94%,100% { opacity:0; transform:none; clip-path:inset(0); } 92% { opacity:.75; transform:translate(-4px,1px); clip-path:inset(15% 0 65%); } 93% { opacity:.55; transform:translate(3px,-1px); clip-path:inset(55% 0 20%); } }
+@keyframes matrix-glitch-b { 0%,91%,94%,100% { opacity:0; transform:none; clip-path:inset(0); } 92.5% { opacity:.7; transform:translate(4px,0); clip-path:inset(38% 0 42%); } 93.5% { opacity:.5; transform:translate(-3px,1px); clip-path:inset(72% 0 8%); } }
+@media (max-width:900px) {
+  .matrix-login-layout { grid-template-columns:1fr; gap:2rem; min-height:auto; padding:3rem 0; }
+  .matrix-login-brand { text-align:center; }
+  .matrix-eyebrow,.matrix-system-readout { justify-content:center; }
+  .matrix-logo-stage { margin:0 auto 1.5rem; max-width:460px; }
+  .matrix-hero-copy { margin:1rem auto 1.5rem; }
+  .matrix-auth-wrap { max-width:520px; justify-self:center; }
+}
+@media (max-width:520px) {
+  .matrix-login { padding:0 1rem; }
+  .matrix-login-topline { font-size:.52rem; letter-spacing:.1em; }
+  .matrix-topline-right { font-size:.48rem; }
+  .matrix-login-layout { padding:2.2rem 0; gap:1.6rem; }
+  .matrix-logo-stage { max-width:340px; }
+  .matrix-hero-title { font-size:1.9rem; }
+  .matrix-hero-copy { font-size:.86rem; }
+  .matrix-auth-card { padding:1.25rem; }
+  .matrix-login-footer { font-size:.48rem; letter-spacing:.07em; }
+}
+@media (prefers-reduced-motion:reduce) {
+  .matrix-logo-main,.matrix-logo-glitch-a,.matrix-logo-glitch-b,.matrix-cursor { animation:none !important; }
+  .matrix-logo-glitch { display:none; }
+}
