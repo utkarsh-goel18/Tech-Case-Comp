@@ -201,3 +201,36 @@ body { margin: 0; background: var(--background); color: var(--foreground); font-
 @media (max-width:1050px) { .finance-market-terminal { grid-template-columns:minmax(0,1fr) 260px; } .finance-workbench { grid-template-columns:1fr; } }
 @media (max-width:760px) { .finance-market-terminal { grid-template-columns:1fr; } .finance-watchlist-items { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); max-height:260px; } .finance-watchlist-row:nth-child(odd) { border-right:1px solid #343434; } }
 @media (max-width:520px) { .finance-overview { grid-template-columns:repeat(2,minmax(0,1fr)); } .finance-watchlist-items { grid-template-columns:1fr; } .finance-watchlist-row:nth-child(odd) { border-right:0; } }
+
+/* Portal-wide contrast guard: the legacy pages still use Tailwind's light palette. */
+.primus-main,.primus-main-narrow { color:#e5e5e5; }
+.primus-main .text-slate-950,.primus-main .text-slate-900,.primus-main .text-slate-800,
+.primus-main .text-slate-700,.primus-main .text-gray-900,.primus-main .text-gray-800,
+.primus-main .text-gray-700 { color:#e5e5e5; }
+.primus-main .text-slate-600,.primus-main .text-slate-500,.primus-main .text-gray-600,
+.primus-main .text-gray-500 { color:#a3a3a3; }
+.primus-main .text-slate-400,.primus-main .text-gray-400 { color:#888; }
+.primus-main .border-slate-100,.primus-main .border-slate-200,.primus-main .border-slate-300,
+.primus-main .border-gray-100,.primus-main .border-gray-200,.primus-main .border-gray-300,
+.primus-main .divide-slate-100 > :not([hidden]) ~ :not([hidden]),
+.primus-main .divide-slate-200 > :not([hidden]) ~ :not([hidden]) { border-color:#383838; }
+.primus-main .bg-white,.primus-main .bg-slate-50,.primus-main .bg-slate-100,
+.primus-main .bg-gray-50,.primus-main .bg-gray-100 { background:#202020; }
+.primus-main .bg-slate-200,.primus-main .bg-gray-200 { background:#303030; }
+.primus-main a:not(.primus-button-primary) { color:#b8c9bd; }
+.primus-main a:not(.primus-button-primary):hover { color:#00e676; }
+.primus-main .primus-panel a { color:#00e676; }
+.primus-main .primus-panel a:hover { color:#7dffb5; }
+.primus-main .primus-panel-body { color:#d0d0d0; }
+.primus-main .primus-panel-body p { color:inherit; }
+.primus-main .primus-panel-body li { color:inherit; }
+.primus-main .primus-panel-body .text-red-700,.primus-main .text-red-700 { color:#ff7885; }
+.primus-main .text-emerald-700,.primus-main .text-green-700 { color:#00e676; }
+.primus-main .text-amber-800,.primus-main .text-amber-900 { color:#ffd47a; }
+.primus-main .ring-slate-200,.primus-main .ring-slate-300 { --tw-ring-color:#484848; }
+.primus-main .bg-emerald-50 { background:#153222; color:#d7f8e4; }
+.primus-main .bg-red-50 { background:#3a2024; color:#ffadb5; }
+.primus-main .bg-amber-50 { background:#3a301d; color:#ffe0a0; }
+.primus-main .bg-blue-50 { background:#172b3a; color:#c5e6ff; }
+.primus-main .primus-task { color:#e5e5e5; }
+.primus-main .primus-task p,.primus-main .primus-task span { color:inherit; }
