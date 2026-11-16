@@ -153,3 +153,90 @@
   :global(.matrix-logo-intro) { display:none; }
   :global(.matrix-login-stage) { opacity:1; transform:none; filter:none; animation:none; }
 }
+
+
+/* ── Short cinematic glitch boot before the existing PRIMUS logo reveal ── */
+:global(.mx-login-boot) {
+  position:fixed; inset:0; z-index:50; display:grid; place-items:center;
+  overflow:hidden; pointer-events:none; background:rgba(1,5,3,.985);
+  animation:mx-boot-exit 520ms cubic-bezier(.76,0,.24,1) 1.32s forwards;
+}
+:global(.mx-login-boot-noise),:global(.mx-login-boot-scan) { position:absolute; inset:0; }
+:global(.mx-login-boot-noise) {
+  opacity:.24;
+  background:repeating-linear-gradient(0deg,transparent 0 5px,rgba(70,240,151,.16) 6px 7px);
+  mix-blend-mode:screen; animation:mx-boot-flicker 280ms steps(2,end) infinite;
+}
+:global(.mx-login-boot-scan) {
+  top:-35%; height:24%;
+  background:linear-gradient(180deg,transparent,rgba(70,240,151,.2),transparent);
+  animation:mx-boot-scan 1.05s ease-in-out .08s both;
+}
+:global(.mx-login-boot-content) {
+  position:relative; width:min(88vw,580px); display:flex; flex-direction:column;
+  align-items:center; text-align:center;
+}
+:global(.mx-login-boot-mark) {
+  position:relative; opacity:0;
+  animation:mx-boot-logo-in 820ms cubic-bezier(.16,1,.3,1) .12s forwards;
+}
+:global(.mx-login-boot-word) {
+  display:block; color:#f5fff8; font-family:var(--font-mono),monospace;
+  font-size:clamp(3.2rem,10vw,6.8rem); font-weight:900;
+  letter-spacing:.14em; line-height:1;
+  text-shadow:0 0 12px rgba(70,240,151,.9),0 0 42px rgba(70,240,151,.42);
+  animation:mx-boot-word-glitch 760ms steps(1,end) .2s both;
+}
+:global(.mx-login-boot-word--ghost) {
+  position:absolute; inset:0; color:#56d9ff; opacity:0;
+  text-shadow:-4px 0 rgba(255,88,111,.75),4px 0 rgba(56,217,255,.75);
+  animation:mx-boot-chromatic 780ms steps(1,end) .2s both;
+}
+:global(.mx-login-boot-rule) {
+  width:min(76%,360px); height:1px; margin-top:25px;
+  background:linear-gradient(90deg,transparent,#46f097,#d5ffe7,#46f097,transparent);
+  box-shadow:0 0 16px rgba(70,240,151,.85); transform:scaleX(0);
+  animation:mx-boot-rule 620ms ease-out .48s forwards;
+}
+:global(.mx-login-boot-status) {
+  margin:15px 0 0; color:#a6ffc9; font:700 10px var(--font-mono),monospace;
+  letter-spacing:.27em; opacity:0; animation:mx-boot-status 360ms ease .72s forwards;
+}
+:global(.mx-login-boot-status) span { color:#46f097; padding:0 6px; }
+:global(.mx-login-boot-lines) {
+  display:grid; gap:5px; margin-top:23px; text-align:left;
+  color:rgba(158,224,180,.62); font:600 8px var(--font-mono),monospace; letter-spacing:.16em;
+}
+:global(.mx-login-boot-lines) span { opacity:0; animation:mx-boot-line 260ms ease-out both; }
+:global(.mx-login-boot-lines) i { margin-right:8px; color:#46f097; font-style:normal; }
+@keyframes mx-boot-exit { to { opacity:0; visibility:hidden; } }
+@keyframes mx-boot-logo-in {
+  0% { opacity:0; transform:scale(.72) translateY(8px); filter:blur(10px); }
+  55% { opacity:1; transform:scale(1.035); filter:blur(0); }
+  68% { opacity:.28; transform:translateX(5px) skewX(-4deg); }
+  78% { opacity:1; transform:translateX(-3px); }
+  100% { opacity:1; transform:none; }
+}
+@keyframes mx-boot-word-glitch {
+  0%,100% { clip-path:inset(0); }
+  18% { clip-path:inset(12% 0 70%); transform:translateX(-5px); }
+  23% { clip-path:inset(58% 0 14%); transform:translateX(6px); }
+  28% { clip-path:inset(0); transform:translateX(0); }
+  62% { clip-path:inset(42% 0 38%); transform:translateX(3px); }
+  68% { clip-path:inset(0); transform:translateX(0); }
+}
+@keyframes mx-boot-chromatic {
+  0%,100% { opacity:0; }
+  18%,23%,62% { opacity:.72; transform:translateX(5px); }
+  20%,26%,68% { opacity:0; transform:translateX(-4px); }
+}
+@keyframes mx-boot-rule { to { transform:scaleX(1); } }
+@keyframes mx-boot-status { to { opacity:1; } }
+@keyframes mx-boot-line { to { opacity:1; } }
+@keyframes mx-boot-scan {
+  from { transform:translateY(-20vh); opacity:0; }
+  35% { opacity:1; }
+  to { transform:translateY(150vh); opacity:0; }
+}
+@keyframes mx-boot-flicker { 0%,100% { opacity:.12; } 50% { opacity:.28; } }
+@media (prefers-reduced-motion:reduce) { :global(.mx-login-boot) { display:none; } }
