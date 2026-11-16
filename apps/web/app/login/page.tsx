@@ -5,6 +5,7 @@ import { getViewer } from "@/lib/auth/viewer";
 import { safeNext } from "@/lib/auth/routes";
 import { LoginForm } from "./login-form";
 import { MatrixRain } from "./matrix-rain";
+import { LoginIntro } from "./login-intro";
 import "./matrix-login.module.css";
 
 export const metadata: Metadata = { title: "Enter PRIMUS · Market Simulation" };
@@ -17,6 +18,7 @@ export default async function LoginPage({ searchParams }: PageProps<"/login">) {
 
   return (
     <main className="matrix-cinematic-login">
+      <LoginIntro />
       <MatrixRain />
       <div className="matrix-cinematic-vignette" aria-hidden="true" />
       <div className="matrix-cinematic-scanlines" aria-hidden="true" />
